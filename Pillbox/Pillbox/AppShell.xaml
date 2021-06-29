@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:Pillbox.Views.MainViews"
+       Title="Pillbox"
+       x:Class="Pillbox.AppShell">
+
+
+
+    <Shell.TabBarBackgroundColor>#00a500</Shell.TabBarBackgroundColor>
+    <Shell.TabBarUnselectedColor>#007800</Shell.TabBarUnselectedColor>
+    <Shell.TabBarTitleColor>white</Shell.TabBarTitleColor>
+    <Shell.BackgroundColor>#00a500</Shell.BackgroundColor>
+    
+
+    <TabBar>
+        <ShellContent Title="Журнал" Icon="event.png" ContentTemplate="{DataTemplate local:EventPage}" />
+        <ShellContent Title="Пилюля" Icon="pills.png" ContentTemplate="{DataTemplate local:MedicineView}" />
+        <ShellContent Title="Лекарства" Icon="pills.png" ContentTemplate="{DataTemplate local:MedPage}" />
+    </TabBar>
+
+    
+
+
+</Shell>

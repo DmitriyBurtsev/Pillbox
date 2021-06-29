@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pillbox.Android", "Pillbox\Pillbox.Android\Pillbox.Android.csproj", "{88B5AE21-6441-42FB-91DD-40998680463A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pillbox", "Pillbox\Pillbox\Pillbox.csproj", "{B45943D0-F98D-4372-91B4-23DD6553429D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88B5AE21-6441-42FB-91DD-40998680463A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45943D0-F98D-4372-91B4-23DD6553429D}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29E11AE4-625E-4302-8096-DE347EE568D0}
+	EndGlobalSection
+EndGlobal

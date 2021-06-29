@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Pillbox.Views.MainViews.MedPage"
+             xmlns:vm="clr-namespace:Pillbox.ViewModels"
+             Title="Мои лекарства">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
+            <StackLayout>
+                <ListView>
+                    
+                    
+                    
+                    
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+        <Button Grid.Row="1" Grid.Column="1" Text="+ Добавить" FontSize="Medium" FontAttributes="None" TextColor="White"
+                        BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End"
+               Command="{Binding AddMedicineCommand}"/>
+    </Grid>
+
+
+
+
+</ContentPage>

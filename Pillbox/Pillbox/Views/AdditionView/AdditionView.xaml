@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:Pillbox.ViewModels" x:DataType="viewmodels:AdditionViewModel"
+             x:Class="Pillbox.Views.AdditionView.AdditionView" Title="Добавление лекарства">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Entry Placeholder="Название лекарства" PlaceholderColor="#005400" FontSize="Large" FontAttributes="Bold"
+                   Keyboard="Chat" Text="{Binding Title}"/>
+                <Label Text=" Единицы измерения" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
+                <Picker x:Name="formsPicker" SelectedItem="{Binding Format}">
+                    <Picker.Items/>
+                </Picker>
+                <Label Text=" Метод приёма" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
+                <Picker x:Name="methodPicker" SelectedItem="{Binding Method}" FontSize="18">
+                    <Picker.Items/>
+                </Picker>
+                <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold"/>
+                <Label Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,-20"/>
+                <DatePicker Date="{Binding }"/>
+                <Label Text=" Количество дней" FontSize="Small" FontAttributes="None" Padding="0,0,0,20"/>
+                <Stepper Minimum="1" Increment="1"/>
+
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
