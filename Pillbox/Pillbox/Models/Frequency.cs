@@ -11,12 +11,6 @@ namespace Pillbox.Models
         public int DailyHours; // через сколько часов
 
         public int InDays; // через сколько дней
-        public enum DaysOfWeek { }; // определенные дни недели
-
-        public int CircleDuration; // цикл приема
-
-        public int MedicationDays; // количесвто дней приема в цикле
-
-        public int BreakDays; // дни перерыва
+        
     }
 }

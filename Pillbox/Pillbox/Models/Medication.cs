@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace Pillbox.Models
@@ -9,5 +10,7 @@ namespace Pillbox.Models
         public DateTime MedicationTime; // время приема
 
         public float Dosage; // доза
+
+        public ObservableCollection<Medication> Medications;
     }
 }

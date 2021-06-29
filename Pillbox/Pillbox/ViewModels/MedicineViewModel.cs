@@ -15,11 +15,23 @@ namespace Pillbox.ViewModels
         public Medicine medicine;
         public INavigation Navigation;
         public MedicineDatabase medicineDatabase;
+        public MedicationViewModel medicationVM;
+        public MedicationViewModel MedicationVM
+        {
+            get => medicationVM;
+            set => Set(ref medicationVM, value);
+        }
         public DurationViewModel durationVM;
         public DurationViewModel DurationVM
         {
             get => durationVM;
             set => Set(ref durationVM, value);
+        }
+        public FrequencyViewModel frequencyVM;
+        public FrequencyViewModel FrequencyVM
+        {
+            get => frequencyVM;
+            set => Set(ref frequencyVM, value);
         }
 
 
@@ -48,21 +60,21 @@ namespace Pillbox.ViewModels
             get => medicine.Method;
             set => Set(ref medicine.Method, value);
         }
-        public ObservableCollection<Medication> medication
-        {
-            get => medicine.medication;
-            set => Set(ref medicine.medication, value);
-        }
+        //public ObservableCollection<Medication> medication
+        //{
+        //    get => medicine.medication;
+        //    set => Set(ref medicine.medication, value);
+        //}
         //public Duration duration
         //{
         //    get => medicine.duration;
         //    set => Set(ref medicine.duration, value);
         //}
-        public Frequency frequency
-        {
-            get => medicine.frequency;
-            set => Set(ref medicine.frequency, value);
-        }
+        //public Frequency frequency
+        //{
+        //    get => medicine.frequency;
+        //    set => Set(ref medicine.frequency, value);
+        //}
         List<Medicine> medicineList;
         public List<Medicine> MedicineList
         {
