@@ -18,7 +18,7 @@ namespace Pillbox.Models
 
         public string Method; // формат приема
 
-        public ObservableCollection<Medication> medication; // массив приемов
+        public ObservableCollection<Medication> medications; // массив приемов
 
         public Duration duration; // длительность
 

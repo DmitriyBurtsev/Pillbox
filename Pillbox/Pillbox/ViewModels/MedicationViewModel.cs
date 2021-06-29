@@ -20,10 +20,6 @@ namespace Pillbox.ViewModels
             get => _medication.Dosage;
             set => Set(ref _medication.Dosage, value);
         }
-        public ObservableCollection<Medication> Medications
-        {
-            get => _medication.Medications;
-            set => Set(ref _medication.Medications, value);
-        }
+       
     }
 }

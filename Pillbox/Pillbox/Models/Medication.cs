@@ -11,6 +11,6 @@ namespace Pillbox.Models
 
         public float Dosage; // доза
 
-        public ObservableCollection<Medication> Medications;
+        
     }
 }
