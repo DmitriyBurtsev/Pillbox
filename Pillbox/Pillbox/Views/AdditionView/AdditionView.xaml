@@ -17,7 +17,7 @@
                 </Picker>
                 <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold"/>
                 <Label Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,-20"/>
-                <DatePicker Date="{Binding }"/>
+                <DatePicker Date="{Binding DurationVM.Start}"/>
                 <Label Text=" Количество дней" FontSize="Small" FontAttributes="None" Padding="0,0,0,20"/>
                 <Stepper Minimum="1" Increment="1"/>
 

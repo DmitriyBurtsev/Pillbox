@@ -15,7 +15,12 @@ namespace Pillbox.ViewModels
         public Medicine medicine;
         public INavigation Navigation;
         public MedicineDatabase medicineDatabase;
-
+        public DurationViewModel durationVM;
+        public DurationViewModel DurationVM
+        {
+            get => durationVM;
+            set => Set(ref durationVM, value);
+        }
 
 
         //public MedPageViewModel medPageViewModel;
@@ -48,11 +53,11 @@ namespace Pillbox.ViewModels
             get => medicine.medication;
             set => Set(ref medicine.medication, value);
         }
-        public Duration duration
-        {
-            get => medicine.duration;
-            set => Set(ref medicine.duration, value);
-        }
+        //public Duration duration
+        //{
+        //    get => medicine.duration;
+        //    set => Set(ref medicine.duration, value);
+        //}
         public Frequency frequency
         {
             get => medicine.frequency;
