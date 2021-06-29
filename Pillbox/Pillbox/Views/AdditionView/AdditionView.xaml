@@ -6,7 +6,7 @@
         <ScrollView>
             <StackLayout Margin="20">
                 <Entry Placeholder="Название лекарства" PlaceholderColor="#005400" FontSize="Large" FontAttributes="Bold"
-                   Keyboard="Chat" Text="{Binding Title}"/>
+                   Keyboard="Chat" Text="{Binding Title}" TextColor="#005400"/>
                 <Label Text=" Единицы измерения" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
                 <Picker x:Name="formsPicker" SelectedItem="{Binding Format}">
                     <Picker.Items/>
@@ -16,11 +16,28 @@
                     <Picker.Items/>
                 </Picker>
                 <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold"/>
-                <Label Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,-20"/>
-                <DatePicker Date="{Binding DurationVM.Start}"/>
-                <Label x:Name="daysLabel" Text="{Binding Source={x:Reference daysStepper},
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
+                    <DatePicker DateSelected="startPicker_DateSelected" x:Name="startPicker" Date="{Binding DurationVM.Start}" Margin="0,10,0,0"/>
+                    <Label x:Name="finishLabel" Grid.Column="1" Text=" Дата окончания" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
+                    <DatePicker DateSelected="finishPicker_DateSelected" x:Name="finishPicker" Grid.Column="1" Date="{Binding DurationVM.Finish}" Margin="0,10,0,0"/>
+                    <CheckBox CheckedChanged="checkBox_CheckedChanged" Grid.Column="2" x:Name="checkBox" Margin="10,0,0,0"/>
+                    <Label Grid.Column="3" Text="Вне плана" FontSize="Medium" Margin="0,15,0,0"/>
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysLabel" Text="{Binding Source={x:Reference daysStepper},
                     Path=Value, StringFormat=' Количество дней приёма: {0}'}" FontSize="Medium" FontAttributes="None" Padding="0,0,0,0"/>
-                <Stepper x:Name="daysStepper" Minimum="1" Increment="1" Value="{Binding DurationVM.DurationDays}"/>
+                    <Stepper ValueChanged="daysStepper_ValueChanged" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysStepper" Minimum="1" Maximum="366" Increment="1" 
+                         Value="{Binding DurationVM.DurationDays}" WidthRequest="20" HeightRequest="40" Margin="0,25,0,0"/>
+                </Grid>
 
 
 
