@@ -17,35 +17,31 @@ namespace Pillbox.Views.AdditionView
         {
             InitializeComponent();           
             BindingContext = new AdditionViewModel(Navigation);
-            Dictionary<string, string> MedicineForms = new Dictionary<string, string>
-        {
-            {"суппозитории", "суппозитории" }, {"инъекции", "инъекции" },
-            {"таблетки", "таблетки" }, {"МЕ", "МЕ" },
-            {"капсулы", "капсулы" }, {"капли", "капли" },
-            {"ампулы", "ампулы" }, {"граммы", "граммы" },
-            {"единицы", "единицы" }, {"ингаляции", "ингаляции" },
-            {"доза спрея", "доза спрея" }, {"использование", "использование" },
-            {"миллиграмм(ы)", "миллиграмм(ы)" }, {"миллилитр(ы)", "миллилитр(ы)" },
-            {"штуки", "штуки" }, {"чайная ложка", "чайная ложка" },
-            {"столовая ложка", "столовая ложка" }, {"свеча(и)", "свеча(и)" },
-            {"пластырь", "пластырь" }, {"пакетик", "пакетик" },
-            {"вагинальные капсулы", "вагинальные капсулы" },
-            {"вагинальные таблетки", "вагинальные таблетки" },
-            {"вагинальные препараты", "вагинальные препараты" },
-        };
-            foreach (string formValue in MedicineForms.Keys)
+            List<string> MedicineForms = new List<string>
+            {"суппозитории", "инъекции", "таблетки","ка псулы", "капли", "ампулы",
+                "ингаляции", "доза спрея", "чайная ложка", "столовая ложка","свеча(и)",
+                "пакетик", "вагинальные капсулы" , "вагинальные таблетки", "вагинальные препараты"};
+
+            foreach (string formValue in MedicineForms)
             {
                 formsPicker.Items.Add(formValue);
             }
-            Dictionary<string, string> MedicineMethods = new Dictionary<string, string>
-        {
-            {"До приёма пищи", "До приёма пищи" }, {"После приёма пищи", "После приёма пищи" },
-            {"Во время приёма пищи", "Во время приёма пищи" },            
-        };
-            foreach (string methodValue in MedicineMethods.Keys)
+
+            List<string> MedicineMethods = new List<string>        
+            {"До приёма пищи", "После приёма пищи", "Во время приёма пищи"};
+
+            foreach (string methodValue in MedicineMethods)
             {
                 methodPicker.Items.Add(methodValue);
             }
+
+            //Binding daysDurationBinding = new Binding { Source = daysStepper, Path = "Value" };
+            //daysLabel.SetBinding(Label.TextProperty, daysDurationBinding);
+
+
+
+
+            //daysLabel.Text = String.Format("Количество дней приёма: {0}", daysStepper.Value);
         }
     }
 }

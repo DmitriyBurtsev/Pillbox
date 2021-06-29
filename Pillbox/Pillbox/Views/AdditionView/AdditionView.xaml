@@ -18,8 +18,9 @@
                 <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold"/>
                 <Label Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,-20"/>
                 <DatePicker Date="{Binding DurationVM.Start}"/>
-                <Label Text=" Количество дней" FontSize="Small" FontAttributes="None" Padding="0,0,0,20"/>
-                <Stepper Minimum="1" Increment="1"/>
+                <Label x:Name="daysLabel" Text="{Binding Source={x:Reference daysStepper},
+                    Path=Value, StringFormat=' Количество дней приёма: {0}'}" FontSize="Medium" FontAttributes="None" Padding="0,0,0,0"/>
+                <Stepper x:Name="daysStepper" Minimum="1" Increment="1" Value="{Binding DurationVM.DurationDays}"/>
 
 
 
