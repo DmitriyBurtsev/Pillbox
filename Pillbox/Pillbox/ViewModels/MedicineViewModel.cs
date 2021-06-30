@@ -75,7 +75,7 @@ namespace Pillbox.ViewModels
         //    get => medicine.frequency;
         //    set => Set(ref medicine.frequency, value);
         //}
-        List<Medicine> medicineList;
+        public List<Medicine> medicineList;
         public List<Medicine> MedicineList
         {
             get => medicineList;

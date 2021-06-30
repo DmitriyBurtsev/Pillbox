@@ -40,11 +40,17 @@ namespace Pillbox.Views.AdditionView
                 daysPicker.Items.Add(Convert.ToString(i));
             }
 
-            for (double i = 0.5; i < 100; i+=0.5)
+            for (double i = 0.5; i < 10; i += 0.5)
             {
                 dosagePicker.Items.Add(Convert.ToString(i));
-            }           
-            
+            }
+
+            for (int i = 1; i < 10; i++)
+            {
+                numberPicker.Items.Add(Convert.ToString(i));
+            }
+           //while ()
+           // saveButton.IsEnabled = false;
             //Binding daysDurationBinding = new Binding { Source = daysStepper, Path = "Value" };
             //daysLabel.SetBinding(Label.TextProperty, daysDurationBinding);
         }

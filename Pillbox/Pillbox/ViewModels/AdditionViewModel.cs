@@ -20,13 +20,18 @@ namespace Pillbox.ViewModels
             medicineDatabase = new MedicineDatabase();
             SaveCommand = new Command(async () => await Save());
         }
+        
         async Task Save()
         {
-            //if (medicine.Format!=null&&medicine.Method!=null&&medicine.Title!=null
-            //    &&medicine.Duration.Start!=null&&(medicine.Frequency.EveryDay==true||medicine.Frequency.InDays>=2)
-            //    &&medicine.Medication.Dosage>=0.5&&medicine.Medication.StartMedicationTime!=null&&medicine.Medication.FinishMedicationTime!=null)
-            await medicineDatabase.SaveMedicineAsync(medicine);
-            await Navigation.PushAsync(new MedPage());
+            if (medicine.Format != null && medicine.Method != null && medicine.Title != null
+                && medicine.Duration.Start != null && (medicine.Frequency.EveryDay == true || medicine.Frequency.InDays >= 2)
+                && medicine.Medication.Dosage >= 0.5 && medicine.Medication.StartMedicationTime != null
+                && medicine.Medication.FinishMedicationTime != null && medicine.Medication.Number >= 1)
+            {
+                await medicineDatabase.SaveMedicineAsync(medicine);
+                await Navigation.PushAsync(new MedPage());                
+            }
+            
         }
        
     }

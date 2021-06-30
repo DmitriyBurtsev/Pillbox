@@ -13,5 +13,7 @@ namespace Pillbox.Models
 
         public float Dosage; // доза
 
+        public int Number;
+
     }
 }
