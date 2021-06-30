@@ -84,9 +84,9 @@
                     <Label FontSize="Medium" Margin="-110,0,0,0" x:Name="dosageLbl" Text="{Binding Source={x:Reference formsPicker}, Path=SelectedItem}" Grid.Row="2" Grid.Column="2" />
                 </Grid>
                 
-                <Button Text="Сохранить" FontSize="Small" FontAttributes="Bold" TextColor="White"
+                <Button Command="{Binding SaveCommand}" Text="Сохранить" FontSize="Small" FontAttributes="Bold" TextColor="White"
                         BackgroundColor="#13bd13" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="End"
-                    WidthRequest="175" Margin="0,10,0,30" Command="SaveCommand"/>
+                    WidthRequest="175" Margin="0,10,0,30"/>
 
 
 

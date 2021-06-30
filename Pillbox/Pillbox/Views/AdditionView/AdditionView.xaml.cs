@@ -43,7 +43,7 @@ namespace Pillbox.Views.AdditionView
             for (double i = 1; i < 100; i+=0.5)
             {
                 dosagePicker.Items.Add(Convert.ToString(i));
-            }
+            }           
             
             //Binding daysDurationBinding = new Binding { Source = daysStepper, Path = "Value" };
             //daysLabel.SetBinding(Label.TextProperty, daysDurationBinding);
