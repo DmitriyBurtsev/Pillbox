@@ -14,9 +14,9 @@
     
 
     <TabBar>
-        <ShellContent Title="Журнал" Icon="event.png" ContentTemplate="{DataTemplate local:EventPage}" />
-        <ShellContent Title="Пилюля" Icon="pills.png" ContentTemplate="{DataTemplate local:MedicineView}" />
-        <ShellContent Title="Лекарства" Icon="pills.png" ContentTemplate="{DataTemplate local:MedPage}" />
+        <ShellContent Title="Добавить лекарство" Icon="event.png" ContentTemplate="{DataTemplate local:EventPage}" />
+        <!--<ShellContent Title="Пилюля" Icon="pills.png" ContentTemplate="{DataTemplate local:MedicineView}" />-->
+        <ShellContent Title="Мои лекарства" Icon="pills.png" ContentTemplate="{DataTemplate local:MedPage}" />
     </TabBar>
 
     
