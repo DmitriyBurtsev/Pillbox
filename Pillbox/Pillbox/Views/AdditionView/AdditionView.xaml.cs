@@ -34,11 +34,14 @@ namespace Pillbox.Views.AdditionView
             {
                 methodPicker.Items.Add(methodValue);
             }
-            //startPicker.MinimumDate = DateTime.Now;
-            //finishPicker.MinimumDate = startPicker.Date.AddDays(1);
+            
+            for (int i=2; i<100; i++)
+            {
+                daysPicker.Items.Add(Convert.ToString(i));
+            }
+            
             //Binding daysDurationBinding = new Binding { Source = daysStepper, Path = "Value" };
             //daysLabel.SetBinding(Label.TextProperty, daysDurationBinding);
-            //daysLabel.Text = String.Format("Количество дней приёма: {0}", daysStepper.Value);
         }
 
         private void checkBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -64,6 +67,9 @@ namespace Pillbox.Views.AdditionView
             base.OnAppearing();
             startPicker.MinimumDate = DateTime.Today;
             finishPicker.MinimumDate = startPicker.Date.AddDays(1);
+            daysPicker.IsVisible = false;
+            daysPicker.IsEnabled = false;
+            daysPicker.SelectedIndex = default;
         }
 
         private void startPicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -88,6 +94,48 @@ namespace Pillbox.Views.AdditionView
 
 
 
+        }
+
+        private void freqEveryday_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (freqEveryday.IsChecked==true)
+            {
+                freqIndays.IsVisible = false;
+                freqIndLbl.IsVisible = false;
+                freqEveryday.BindingContext = true;
+            }
+            else
+            {
+                freqIndays.IsVisible = true;
+                freqIndLbl.IsVisible = true;
+                freqEveryday.BindingContext = false;
+
+            }
+        }
+
+        private void freqIndays_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (freqIndays.IsChecked==true)
+            {
+                freqEveryday.IsVisible = false;
+                freqEvrLbl.IsVisible = false;
+                daysPicker.IsVisible = true;
+                daysPicker.IsEnabled = true;
+
+            }
+            else
+            {
+                freqEveryday.IsVisible = true;
+                freqEvrLbl.IsVisible = true;
+                daysPicker.IsVisible = false;
+                daysPicker.IsEnabled = false;
+
+            }
+        }
+
+        private void daysPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            daysPicker.IsVisible = false;
         }
     }
 }

@@ -8,17 +8,12 @@ namespace Pillbox.ViewModels
     public class FrequencyViewModel:BaseViewModel
     {
         public Frequency _frequency;
-        public int DailyTimes
+        public bool EveryDay
         {
-            get => _frequency.DailyTimes;
-            set => Set(ref _frequency.DailyTimes, value);
+            get => _frequency.EveryDay;
+            set => Set(ref _frequency.EveryDay, value);
         }
-
-        public int DailyHours
-        {
-            get => _frequency.DailyHours;
-            set => Set(ref _frequency.DailyHours, value);
-        }
+        
 
         public int InDays
         {

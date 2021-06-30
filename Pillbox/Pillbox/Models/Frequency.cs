@@ -6,9 +6,7 @@ namespace Pillbox.Models
 {
     public class Frequency
     {
-        public int DailyTimes; // сколько раз в день
-
-        public int DailyHours; // через сколько часов
+        public bool EveryDay; // сколько раз в день
 
         public int InDays; // через сколько дней
         
