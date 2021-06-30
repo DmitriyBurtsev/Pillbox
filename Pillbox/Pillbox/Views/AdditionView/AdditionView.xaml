@@ -15,7 +15,7 @@
                 <Picker x:Name="methodPicker" SelectedItem="{Binding Method}" FontSize="18">
                     <Picker.Items/>
                 </Picker>
-                <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+                <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
@@ -39,7 +39,7 @@
                          Value="{Binding DurationVM.DurationDays}" WidthRequest="20" HeightRequest="40" Margin="0,25,0,0"/>
                 </Grid>
                 
-                <Label Text=" Частота" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+                <Label Text=" Частота" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
                 <Grid HeightRequest="60">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -63,27 +63,30 @@
                     </Picker>
                 </Grid>
                 
-                <Label Text=" Приём" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,0"/>
+                <Label Text=" Приём" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="130"/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0" Grid.Row="0" Text="Время первого приёма" Margin="6,0,0,0"/>
-                    <TimePicker Grid.Column="0" Grid.Row="1" x:Name="startTime" Margin="2,0,0,0"/>
+                    <TimePicker Format="hh:mm" Grid.Column="0" BindingContext="{Binding MedicationVM.StartMedicationTime}" Grid.Row="1" x:Name="startTime" Margin="2,0,0,0" />
                     <Label Grid.Column="1" Grid.Row="0" Text="Время последнего приёма"/>
-                    <TimePicker Grid.Column="1" Grid.Row="1" x:Name="finishTime"/>
+                    <TimePicker Format="hh:mm" Grid.Column="1" Grid.Row="1" BindingContext="{Binding MedicationVM.FinishMedicationTime}" x:Name="finishTime"/>
                     <Label Grid.Row="2" Grid.Column="0" Text="Дозировка: " FontSize="Medium" Margin="6,0,0,0"/>
+                    <Picker Margin="-20,-15,0,0" Grid.Column="1" Grid.Row="2" SelectedItem="{Binding MedicationVM.Dosage}" x:Name="dosagePicker"/>
+                    <Label FontSize="Medium" Margin="-110,0,0,0" x:Name="dosageLbl" Text="{Binding Source={x:Reference formsPicker}, Path=SelectedItem}" Grid.Row="2" Grid.Column="2" />
                 </Grid>
                 
                 <Button Text="Сохранить" FontSize="Small" FontAttributes="Bold" TextColor="White"
                         BackgroundColor="#13bd13" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="End"
-                    WidthRequest="175" Margin="0,0,0,30"/>
+                    WidthRequest="175" Margin="0,10,0,30"/>
 
 
 

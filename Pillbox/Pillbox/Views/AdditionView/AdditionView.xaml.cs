@@ -18,9 +18,9 @@ namespace Pillbox.Views.AdditionView
             InitializeComponent();           
             BindingContext = new AdditionViewModel(Navigation);
             List<string> MedicineForms = new List<string>
-            {"суппозитории", "инъекции", "таблетки","капсулы", "капли", "ампулы",
-                "ингаляции", "доза спрея", "чайная ложка", "столовая ложка","свеча(и)",
-                "пакетик", "вагинальные капсулы" , "вагинальные таблетки", "вагинальные препараты"};
+            {"суппозитории(я)", "инъекция(и)", "таблетка(и)","капсула(ы)", "капля(и)", "ампула(ы)",
+                "ингаляция(и)", "доза(ы) спрея", "чайная(ые) ложка(и)", "столовая(ые) ложка(и)","свеча(и)",
+                "пакетик(а)"};
 
             foreach (string formValue in MedicineForms)
             {
@@ -28,7 +28,7 @@ namespace Pillbox.Views.AdditionView
             }
 
             List<string> MedicineMethods = new List<string>        
-            {"До приёма пищи", "После приёма пищи", "Во время приёма пищи"};
+            {"До приёма пищи", "После приёма пищи", "Во время приёма пищи", "Не имеет значения"};
 
             foreach (string methodValue in MedicineMethods)
             {
@@ -38,6 +38,11 @@ namespace Pillbox.Views.AdditionView
             for (int i=2; i<100; i++)
             {
                 daysPicker.Items.Add(Convert.ToString(i));
+            }
+
+            for (double i = 1; i < 100; i+=0.5)
+            {
+                dosagePicker.Items.Add(Convert.ToString(i));
             }
             
             //Binding daysDurationBinding = new Binding { Source = daysStepper, Path = "Value" };
@@ -158,5 +163,6 @@ namespace Pillbox.Views.AdditionView
             daysLbl.IsVisible = false;
 
         }
+        
     }
 }
