@@ -18,11 +18,11 @@ namespace Pillbox.Models
 
         public string Method; // формат приема
 
-        public ObservableCollection<Medication> medications; // массив приемов
+        public Medication Medication; // массив приемов
 
-        public Duration duration; // длительность
+        public Duration Duration; // длительность
 
-        public Frequency frequency; // частота
+        public Frequency Frequency; // частота
 
     }
 }

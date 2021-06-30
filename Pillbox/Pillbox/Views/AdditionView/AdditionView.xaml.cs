@@ -40,7 +40,7 @@ namespace Pillbox.Views.AdditionView
                 daysPicker.Items.Add(Convert.ToString(i));
             }
 
-            for (double i = 1; i < 100; i+=0.5)
+            for (double i = 0.5; i < 100; i+=0.5)
             {
                 dosagePicker.Items.Add(Convert.ToString(i));
             }           
