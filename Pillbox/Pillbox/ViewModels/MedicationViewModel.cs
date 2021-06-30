@@ -9,17 +9,21 @@ namespace Pillbox.ViewModels
     public class MedicationViewModel:BaseViewModel
     {
         public Medication _medication;
-        public DateTime MedicationTime
+        public DateTime StartMedicationTime
         {
-            get => _medication.MedicationTime;
-            set => Set(ref _medication.MedicationTime, value);
+            get => _medication.StartMedicationTime;
+            set => Set(ref _medication.StartMedicationTime, value);
+        }
+        public DateTime FinishMedicationTime
+        {
+            get => _medication.FinishMedicationTime;
+            set => Set(ref _medication.FinishMedicationTime, value);
         }
 
         public float Dosage
         {
             get => _medication.Dosage;
             set => Set(ref _medication.Dosage, value);
-        }
-       
+        }       
     }
 }

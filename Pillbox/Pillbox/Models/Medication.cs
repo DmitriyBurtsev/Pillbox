@@ -7,10 +7,11 @@ namespace Pillbox.Models
 {
     public class Medication
     {
-        public DateTime MedicationTime; // время приема
+        public DateTime StartMedicationTime; // время первого приема
+
+        public DateTime FinishMedicationTime; // время последнего  приема
 
         public float Dosage; // доза
 
-        
     }
 }

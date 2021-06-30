@@ -60,11 +60,11 @@ namespace Pillbox.ViewModels
             get => medicine.Method;
             set => Set(ref medicine.Method, value);
         }
-        public ObservableCollection<Medication> Medications
-        {
-            get => medicine.medications;
-            set => Set(ref medicine.medications, value);
-        }
+        //public ObservableCollection<Medication> Medications
+        //{
+        //    get => medicine.medications;
+        //    set => Set(ref medicine.medications, value);
+        //}
         //public Duration duration
         //{
         //    get => medicine.duration;

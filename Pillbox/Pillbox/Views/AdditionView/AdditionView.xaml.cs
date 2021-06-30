@@ -69,6 +69,7 @@ namespace Pillbox.Views.AdditionView
             finishPicker.MinimumDate = startPicker.Date.AddDays(1);
             daysPicker.IsVisible = false;
             daysPicker.IsEnabled = false;
+            daysLbl.IsVisible = false;
             daysPicker.SelectedIndex = default;
         }
 
@@ -102,12 +103,16 @@ namespace Pillbox.Views.AdditionView
             {
                 freqIndays.IsVisible = false;
                 freqIndLbl.IsVisible = false;
+                freqIndays.IsEnabled = false;
+                freqIndLbl.IsEnabled = false;
                 freqEveryday.BindingContext = true;
             }
             else
             {
                 freqIndays.IsVisible = true;
                 freqIndLbl.IsVisible = true;
+                freqIndays.IsEnabled = true;
+                freqIndLbl.IsEnabled = true;
                 freqEveryday.BindingContext = false;
 
             }
@@ -119,16 +124,23 @@ namespace Pillbox.Views.AdditionView
             {
                 freqEveryday.IsVisible = false;
                 freqEvrLbl.IsVisible = false;
+                freqEveryday.IsEnabled = false;
+                freqEvrLbl.IsEnabled = false;
                 daysPicker.IsVisible = true;
                 daysPicker.IsEnabled = true;
+                daysLbl.IsVisible = true;
 
             }
             else
             {
                 freqEveryday.IsVisible = true;
                 freqEvrLbl.IsVisible = true;
+                freqEveryday.IsEnabled = true;
+                freqEvrLbl.IsEnabled = true;
                 daysPicker.IsVisible = false;
                 daysPicker.IsEnabled = false;
+                daysLbl.IsVisible = false;
+
 
             }
         }
@@ -136,6 +148,15 @@ namespace Pillbox.Views.AdditionView
         private void daysPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             daysPicker.IsVisible = false;
+            daysLbl.IsVisible = false;
+
+        }
+
+        private void daysPicker_Unfocused(object sender, FocusEventArgs e)
+        {
+            daysPicker.IsVisible = false;
+            daysLbl.IsVisible = false;
+
         }
     }
 }
