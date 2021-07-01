@@ -1,7 +1,6 @@
 ﻿using Pillbox.Database;
 using Pillbox.Models;
 using Pillbox.Services;
-using Pillbox.Views.MainViews;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,13 +10,13 @@ using Xamarin.Forms;
 
 namespace Pillbox.ViewModels
 {
-    public class AdditionViewModel:MedicineViewModel
+    public class AdditionViewModel : MedicineViewModel
     {
         private readonly IMedicineDatabase _medicineDatabase;
         private readonly IPageSevices _pageService;
         public Medicine Medicine { get; private set; }
         public ICommand SaveCommand { get; protected set; }
-        public AdditionViewModel (MedicineViewModel medicineViewModel, IMedicineDatabase medicineDatabase, IPageSevices pageService)
+        public AdditionViewModel(MedicineViewModel medicineViewModel, IMedicineDatabase medicineDatabase, IPageSevices pageService)
         {
             if (medicineViewModel == null)
                 throw new ArgumentNullException(nameof(medicineViewModel));
@@ -38,10 +37,10 @@ namespace Pillbox.ViewModels
                 Medication = medicineViewModel.MedicationVM
             };
         }
-        
+
         async Task Save()
         {
-           if(String.IsNullOrWhiteSpace(Medicine.Title))
+            if (String.IsNullOrWhiteSpace(Medicine.Title))
             {
                 await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите название лекарства", "OK");
                 return;
@@ -56,7 +55,7 @@ namespace Pillbox.ViewModels
                 await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите форму приёма лекарства", "OK");
                 return;
             }
-            if (Medicine.Id==0)
+            if (Medicine.Id == 0)
             {
                 await medicineDatabase.AddMedicine(Medicine);
                 MessagingCenter.Send(this, Events.MedicineAdded, Medicine);
@@ -68,6 +67,6 @@ namespace Pillbox.ViewModels
             }
             await _pageService.PopAsync();
         }
-       
+
     }
 }

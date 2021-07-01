@@ -8,7 +8,6 @@ using Pillbox.Views.MainViews;
 using Pillbox.Database;
 using System.Threading.Tasks;
 using Pillbox.Models;
-using Pillbox.Views.AdditionView;
 using Pillbox.Services;
 
 namespace Pillbox.ViewModels

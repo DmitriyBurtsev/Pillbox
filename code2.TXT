@@ -1,4 +1,4 @@
-﻿using Pillbox.Database;
+using Pillbox.Database;
 using Pillbox.ViewModels;
 using Pillbox.Services;
 using System;

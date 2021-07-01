@@ -21,10 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\AdditionView\AdditionView.xaml">
+    <EmbeddedResource Update="Views\ConfirmationView\ConfirmationView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ConfirmationView\ConfirmationView.xaml">
+    <EmbeddedResource Update="Views\MainViews\AdditionView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\MainViews\EventPage.xaml">
