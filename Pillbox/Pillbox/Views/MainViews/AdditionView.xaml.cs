@@ -18,9 +18,10 @@ namespace Pillbox.Views.MainViews
         public AdditionView(MedicineViewModel medicineViewModel)
         {
             InitializeComponent();
+
             var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
-            Title = (medicineViewModel.Title == null) ? "Добавление нового лекарства" : $"{Title}";
+            Title = (medicineViewModel.Title == null) ? "Добавление лекарства" : $"{Title}";
             BindingContext = new AdditionViewModel(medicineViewModel ?? new MedicineViewModel(), medicineDatabase, pageService);
 
 
