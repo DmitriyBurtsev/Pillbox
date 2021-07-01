@@ -9,6 +9,7 @@ using Pillbox.Database;
 using System.Threading.Tasks;
 using Pillbox.Models;
 using Pillbox.Views.AdditionView;
+using Pillbox.Services;
 
 namespace Pillbox.ViewModels
 {
@@ -21,6 +22,10 @@ namespace Pillbox.ViewModels
 
         private bool _isDataLoaded;
 
+        private IMedicineDatabase _medicineDB;
+
+        private IPageSevices _pageService;
+
         private MedicineViewModel _selectedMedicine;
         public MedicineViewModel SelectedMedicine
         {
@@ -28,22 +33,24 @@ namespace Pillbox.ViewModels
             set
             {
                 Set(ref _selectedMedicine, value);
-                ShowMedicineDetails(value.Id);
             }
         }
 
         public ObservableCollection<MedicineViewModel> Medicines { get; private set; } 
             = new ObservableCollection<MedicineViewModel>();
-        public MedPageViewModel(INavigation navigation)
+
+
+
+
+        public MedPageViewModel(IPageSevices pageSevices, IMedicineDatabase medicineDatabase)
         {
-            Navigation = navigation;
-            //medicineDatabase = new MedicineDatabase(App.dbpath);
-            //Medicines = new List<MedicineViewModel>();
+            _pageService = pageSevices;
+            _medicineDB = medicineDatabase;
+           
             LoadMedicinesCommand = new Command(async () => await Load());
             AddMedicineCommand = new Command(async () => await AddMedicine());
-            DeleteMedicineCommand = new Command(async () => await DeleteMedicine());
-            SelectMedicineCommand = new Command(async () => await SelectMedicine());
-            //UploatAllMedicines();            
+            DeleteMedicineCommand = new Command<MedicineViewModel>(async c => await DeleteMedicine(c));
+            SelectMedicineCommand = new Command<MedicineViewModel>(async c => await SelectMedicine(c));
         }
 
         private async Task SelectMedicine(MedicineViewModel medicine)
@@ -51,7 +58,7 @@ namespace Pillbox.ViewModels
             if (medicine == null) 
                 return;
             SelectedMedicine = null;
-            await Navigation.PushAsync(new DetailsPageViewModel(medicine));
+            await _pageService.PushAsync(new AdditionView(medicine));
         }
 
         private async Task Load()
@@ -59,10 +66,28 @@ namespace Pillbox.ViewModels
            if(_isDataLoaded)
                 return;
             _isDataLoaded = true;
-            var medicines = await medicineDatabase.GetAllMedicinesAsync();
+            var medicines = await _medicineDB.UpdateMedicineList();
             foreach (var medicine in medicines)
                 Medicines.Add(new MedicineViewModel(medicine));
         }
+
+        async Task AddMedicine()
+        {
+            await _pageService.PushAsync(new AdditionView(new MedicineViewModel()));
+        }
+
+        async Task DeleteMedicine(MedicineViewModel deleteMedicine)
+        {
+            Medicines.Remove(deleteMedicine);
+            var medicine = await _medicineDB.GetMedicine(deleteMedicine.Id); // поиск medicine в базе по его ID
+            await _medicineDB.DeleteMedicine(medicine);
+        }
+
+
+
+
+
+
 
         //async void UploatAllMedicines()
         //{
@@ -83,15 +108,7 @@ namespace Pillbox.ViewModels
         //{
         //    await Navigation.PushAsync(new DetailsPage(selectedMedicineId));
         //}
-        async Task AddMedicine()
-        {
-           await Navigation.PushAsync(new AdditionView(new MedicineViewModel));
-        }
-       
-        async Task DeleteMedicine()
-        {
-           await medicineDatabase.DeleteMedicineAsync(_selectedMedicine.Id);
-        }
+
 
 
         //public void Back()

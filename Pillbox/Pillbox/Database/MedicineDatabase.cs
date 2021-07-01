@@ -9,39 +9,39 @@ using System.IO;
 
 namespace Pillbox.Database
 {
-    public class MedicineDatabase
+    public class MedicineDatabase:IMedicineDatabase
     {
-        static SQLiteAsyncConnection medicineDatabase;
+        private SQLiteAsyncConnection _connection;
 
-        public MedicineDatabase(string dbPath)
+        public MedicineDatabase(ISQLiteDb db)
         {
-            medicineDatabase = new SQLiteAsyncConnection(dbPath);
-            
+            _connection = db.GetConnection();
+            _connection.CreateTableAsync<Medicine>();
         }
-        public async Task CreateTable()
+        
+        public async Task<IEnumerable<Medicine>> UpdateMedicineList()
         {
-            await medicineDatabase.CreateTableAsync<Medicine>();
+            return await _connection.Table<Medicine>().ToListAsync();
         }
-        public async Task<IEnumerable<Medicine>> GetAllMedicinesAsync()
+
+        public async Task<Medicine> GetMedicine(int id)
         {
-            return await medicineDatabase.Table<Medicine>().ToListAsync();
+            return await _connection.FindAsync<Medicine>(id);
         }
-        public async Task<Medicine> GetMedicineAsync(int id)
+
+        public  async Task AddMedicine(Medicine contact)
         {
-            return await medicineDatabase.GetAsync<Medicine>(id);
+            await _connection.InsertAsync(contact);
         }
-        public async Task<int> DeleteMedicineAsync(int id)
+
+        public async Task UpdateMedicine(Medicine contact)
         {
-            return await medicineDatabase.DeleteAsync(id);
+            await _connection.UpdateAsync(contact);
         }
-        public async Task<int> SaveMedicineAsync(Medicine item)
+
+        public async Task DeleteMedicine(Medicine contact)
         {
-            if (item.Id != 0)
-            {
-                await medicineDatabase.UpdateAsync(item);
-                return item.Id;
-            }
-            else return await medicineDatabase.InsertAsync(item);
+            await _connection.DeleteAsync(contact);
         }
     }
 }
