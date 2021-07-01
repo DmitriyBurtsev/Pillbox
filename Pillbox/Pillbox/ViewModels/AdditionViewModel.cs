@@ -14,7 +14,7 @@ namespace Pillbox.ViewModels
     {
         private readonly IMedicineDatabase _medicineDatabase;
         private readonly IPageSevices _pageService;
-        public Medicine Medicine { get; private set; }
+        public Medicine Medicine { get; set; }
         public ICommand SaveCommand { get; protected set; }
         public AdditionViewModel(MedicineViewModel medicineViewModel, IMedicineDatabase medicineDatabase, IPageSevices pageService)
         {
@@ -40,17 +40,17 @@ namespace Pillbox.ViewModels
 
         async Task Save()
         {
-            if (String.IsNullOrWhiteSpace(Medicine.Title))
+            if (string.IsNullOrWhiteSpace(Medicine.Title))
             {
                 await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите название лекарства", "OK");
                 return;
             }
-            if (String.IsNullOrWhiteSpace(Medicine.Format))
+            if (string.IsNullOrWhiteSpace(Medicine.Format))
             {
                 await _pageService.DisplayAlert("Ошибка", "Пожалуйста, выберите лекарственную форму", "OK");
                 return;
             }
-            if (String.IsNullOrWhiteSpace(Medicine.Method))
+            if (string.IsNullOrWhiteSpace(Medicine.Method))
             {
                 await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите форму приёма лекарства", "OK");
                 return;

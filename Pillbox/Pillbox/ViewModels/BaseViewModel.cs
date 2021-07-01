@@ -6,19 +6,21 @@ using System.Runtime.CompilerServices;
 
 namespace Pillbox.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName=null)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        protected virtual bool Set<T>(ref T field, T value, [CallerMemberName]string propertyName=null)
+        protected void Set<T>(ref T backingField, T value, [CallerMemberName] string propertyName = null)
         {
-            if (Equals(field, value)) return false;
-            field = value;
+            if (EqualityComparer<T>.Default.Equals(backingField, value))
+                return;
+
+            backingField = value;
+
             OnPropertyChanged(propertyName);
-            return true;
         }
     }
 }
