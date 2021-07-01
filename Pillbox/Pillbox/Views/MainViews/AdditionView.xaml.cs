@@ -15,14 +15,14 @@ namespace Pillbox.Views.MainViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AdditionView : ContentPage
     {
-        public AdditionView(MedicineViewModel medicineViewModel)
+        public AdditionView(MedicineViewModel viewModel)
         {
             InitializeComponent();
 
             var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
-            Title = (medicineViewModel.Title == null) ? "Добавление лекарства" : $"{Title}";
-            BindingContext = new AdditionViewModel(medicineViewModel ?? new MedicineViewModel(), medicineDatabase, pageService);
+            Title = (viewModel.Title == null) ? "Добавление лекарства" : $"{Title}";
+            BindingContext = new AdditionViewModel(viewModel ?? new MedicineViewModel(), medicineDatabase, pageService);
 
 
 

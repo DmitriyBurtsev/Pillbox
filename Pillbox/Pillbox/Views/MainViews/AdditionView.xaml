@@ -6,7 +6,7 @@
         <ScrollView>
             <StackLayout Margin="20">
                 <Entry x:Name="titleEntry" Placeholder="Название лекарства" PlaceholderColor="#005400" FontSize="Large" FontAttributes="Bold"
-                   Keyboard="Chat" Text="{Binding Title}" TextColor="#005400"/>
+                   Keyboard="Chat" Text="{Binding Path=Medicine.Title}" TextColor="#005400"/>
                 <Label Text=" Единицы измерения" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
                 <Picker x:Name="formsPicker" SelectedItem="{Binding Format}">
                     <Picker.Items/>
