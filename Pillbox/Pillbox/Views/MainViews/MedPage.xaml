@@ -16,15 +16,15 @@
         </Grid.ColumnDefinitions>
         <ScrollView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
             <StackLayout>
-                <ListView x:Name="medicineList" HasUnevenRows="True" ItemsSource="{Binding}">
+                <ListView x:Name="medicineList" HasUnevenRows="True" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <ViewCell.View>
                                     <StackLayout>
-                                        <Label Text="{Binding Title}"/>
-                                        <Label Text="{Binding }"/>
-                                        <Label Text="{Binding }"/>
+                                        <Label />
+                                        <Label />
+                                        <Label />
                                     </StackLayout>
                                 </ViewCell.View>
                             </ViewCell>
