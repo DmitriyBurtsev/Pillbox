@@ -78,9 +78,12 @@ namespace Pillbox.ViewModels
 
         async Task DeleteMedicine(MedicineViewModel deleteMedicine)
         {
-            Medicines.Remove(deleteMedicine);
-            var medicine = await _medicineDB.GetMedicine(deleteMedicine.Id); // поиск medicine в базе по его ID
-            await _medicineDB.DeleteMedicine(medicine);
+            if (await _pageService.DisplayAlert("Внимание", $"Вы действительно хотите удалить {deleteMedicine.Title}?", "Да", "Нет"))
+            {
+                Medicines.Remove(deleteMedicine);
+                var medicine = await _medicineDB.GetMedicine(deleteMedicine.Id); // поиск medicine в базе по его ID
+                await _medicineDB.DeleteMedicine(medicine);
+            }
         }
 
 
