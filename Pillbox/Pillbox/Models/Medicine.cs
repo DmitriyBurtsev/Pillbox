@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Pillbox.ViewModels;
 using SQLite;
 
 namespace Pillbox.Models
@@ -18,11 +19,11 @@ namespace Pillbox.Models
 
         public string Method; // формат приема
 
-        public Medication Medication; // массив приемов
+        public MedicationViewModel Medication; // массив приемов
 
-        public Duration Duration; // длительность
+        public DurationViewModel Duration; // длительность
 
-        public Frequency Frequency; // частота
+        public FrequencyViewModel Frequency; // частота
 
     }
 }

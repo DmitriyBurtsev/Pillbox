@@ -12,28 +12,8 @@ namespace Pillbox.ViewModels
 {
     public class MedicineViewModel:BaseViewModel
     {
-        public Medicine medicine;
         public INavigation Navigation;
         public MedicineDatabase medicineDatabase;
-        public MedicationViewModel medicationVM;
-        public MedicationViewModel MedicationVM
-        {
-            get => medicationVM;
-            set => Set(ref medicationVM, value);
-        }
-        public DurationViewModel durationVM;
-        public DurationViewModel DurationVM
-        {
-            get => durationVM;
-            set => Set(ref durationVM, value);
-        }
-        public FrequencyViewModel frequencyVM;
-        public FrequencyViewModel FrequencyVM
-        {
-            get => frequencyVM;
-            set => Set(ref frequencyVM, value);
-        }
-
 
         //public MedPageViewModel medPageViewModel;
         //public MedPageViewModel ListViewModel
@@ -41,25 +21,57 @@ namespace Pillbox.ViewModels
         //    get => medPageViewModel;
         //    set => Set(ref medPageViewModel, value);
         //}
-        //public MedicineViewModel()
-        //{
-        //    medicine = new Medicine();
-        //}
+        public MedicineViewModel() { }
+        public MedicineViewModel(Medicine medicine)
+        {
+            Id = medicine.Id;
+            Title = medicine.Title;
+            Format = medicine.Format;
+            Method = medicine.Method;
+            DurationVM = medicine.Duration;
+            FrequencyVM = medicine.Frequency;
+            MedicationVM = medicine.Medication;
+        }
+        public int Id { get; set; }
+        private string _title; 
         public string Title
         {
-            get => medicine.Title;
-            set => Set(ref medicine.Title, value);
+            get => _title;
+            set => Set(ref _title, value);
         }
+        private string _format;
         public string Format
         {
-            get => medicine.Format;
-            set => Set(ref medicine.Format, value);
+            get => _format;
+            set => Set(ref _format, value);
         }
+        private string _method;
         public string Method
         {
-            get => medicine.Method;
-            set => Set(ref medicine.Method, value);
+            get => _method;
+            set => Set(ref _method, value);
         }
+        public MedicationViewModel _medicationVM;
+        public MedicationViewModel MedicationVM
+        {
+            get => _medicationVM;
+            set => Set(ref _medicationVM, value);
+        }
+        public DurationViewModel _durationVM;
+        public DurationViewModel DurationVM
+        {
+            get => _durationVM;
+            set => Set(ref _durationVM, value);
+        }
+        public FrequencyViewModel _frequencyVM;
+        public FrequencyViewModel FrequencyVM
+        {
+            get => _frequencyVM;
+            set => Set(ref _frequencyVM, value);
+        }
+
+
+
         //public ObservableCollection<Medication> Medications
         //{
         //    get => medicine.medications;
@@ -75,11 +87,11 @@ namespace Pillbox.ViewModels
         //    get => medicine.frequency;
         //    set => Set(ref medicine.frequency, value);
         //}
-        public List<Medicine> medicineList;
-        public List<Medicine> MedicineList
-        {
-            get => medicineList;
-            set => Set(ref medicineList, value);
-        }
+        //public List<Medicine> medicineList;
+        //public List<Medicine> MedicineList
+        //{
+        //    get => medicineList;
+        //    set => Set(ref medicineList, value);
+        //}
     }
 }

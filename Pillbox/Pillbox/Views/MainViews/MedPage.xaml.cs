@@ -15,13 +15,13 @@ namespace Pillbox.Views.MainViews
         public MedPage()
         {
             InitializeComponent();
+            ;
         }
-        protected override void OnAppearing()
-        {
+        protected override async void OnAppearing()
+        {           
+            medicineList.ItemsSource = await App.Database.GetAllMedicinesAsync();
+            this.BindingContext = new MedPageViewModel(Navigation);
             base.OnAppearing();
-            {
-                this.BindingContext = new MedPageViewModel(Navigation);
-            }
         }
     }
 }

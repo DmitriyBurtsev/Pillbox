@@ -11,35 +11,37 @@ namespace Pillbox.Database
 {
     public class MedicineDatabase
     {
-        static SQLiteAsyncConnection sqliteconection;
-        public const string DbFileName = "medicines.db";
+        static SQLiteAsyncConnection medicineDatabase;
 
-        public MedicineDatabase()
+        public MedicineDatabase(string dbPath)
         {
-            sqliteconection = new SQLiteAsyncConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbFileName));
-            sqliteconection.CreateTableAsync<Medicine>();
+            medicineDatabase = new SQLiteAsyncConnection(dbPath);
+            
         }
-       
-        public async Task<List<Medicine>> GetMedicinesAsync()
+        public async Task CreateTable()
         {
-            return await sqliteconection.Table<Medicine>().ToListAsync();
+            await medicineDatabase.CreateTableAsync<Medicine>();
+        }
+        public async Task<IEnumerable<Medicine>> GetAllMedicinesAsync()
+        {
+            return await medicineDatabase.Table<Medicine>().ToListAsync();
         }
         public async Task<Medicine> GetMedicineAsync(int id)
         {
-            return await sqliteconection.GetAsync<Medicine>(id);
+            return await medicineDatabase.GetAsync<Medicine>(id);
         }
         public async Task<int> DeleteMedicineAsync(int id)
         {
-            return await sqliteconection.DeleteAsync(id);
+            return await medicineDatabase.DeleteAsync(id);
         }
         public async Task<int> SaveMedicineAsync(Medicine item)
         {
             if (item.Id != 0)
             {
-                await sqliteconection.UpdateAsync(item);
+                await medicineDatabase.UpdateAsync(item);
                 return item.Id;
             }
-            else return await sqliteconection.InsertAsync(item);
+            else return await medicineDatabase.InsertAsync(item);
         }
     }
 }

@@ -10,6 +10,10 @@ namespace Pillbox
 {
     public partial class App : Application
     {
+        public const string DbFileName = "medicines.db";
+
+        public static string dbpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbFileName);
+
         public static MedicineDatabase database;
         public static MedicineDatabase Database
         {
@@ -17,7 +21,7 @@ namespace Pillbox
             {
                 if (database == null)
                 {
-                    database = new MedicineDatabase();
+                    database = new MedicineDatabase(dbpath);
                 }
                 return database;
             }
@@ -28,8 +32,9 @@ namespace Pillbox
             MainPage = new AppShell();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
+            await Database.CreateTable();
         }
 
         protected override void OnSleep()

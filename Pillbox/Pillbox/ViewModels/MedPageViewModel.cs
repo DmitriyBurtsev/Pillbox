@@ -16,18 +16,58 @@ namespace Pillbox.ViewModels
     {
         public ICommand AddMedicineCommand { get; protected set; }
         public ICommand DeleteMedicineCommand { get; protected set; }
+        public ICommand SelectMedicineCommand { get; protected set; }
+        public ICommand LoadMedicinesCommand { get; protected set; }
+
+        private bool _isDataLoaded;
+
+        private MedicineViewModel _selectedMedicine;
+        public MedicineViewModel SelectedMedicine
+        {
+            get => _selectedMedicine;
+            set
+            {
+                Set(ref _selectedMedicine, value);
+                ShowMedicineDetails(value.Id);
+            }
+        }
+
+        public ObservableCollection<MedicineViewModel> Medicines { get; private set; } 
+            = new ObservableCollection<MedicineViewModel>();
         public MedPageViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            medicineDatabase = new MedicineDatabase();
+            //medicineDatabase = new MedicineDatabase(App.dbpath);
+            //Medicines = new List<MedicineViewModel>();
+            LoadMedicinesCommand = new Command(async () => await Load());
             AddMedicineCommand = new Command(async () => await AddMedicine());
             DeleteMedicineCommand = new Command(async () => await DeleteMedicine());
-            UploatAllMedicines();
+            SelectMedicineCommand = new Command(async () => await SelectMedicine());
+            //UploatAllMedicines();            
         }
-        async void UploatAllMedicines()
+
+        private async Task SelectMedicine(MedicineViewModel medicine)
         {
-            MedicineList = await medicineDatabase.GetMedicinesAsync();
+            if (medicine == null) 
+                return;
+            SelectedMedicine = null;
+            await Navigation.PushAsync(new DetailsPageViewModel(medicine));
         }
+
+        private async Task Load()
+        {
+           if(_isDataLoaded)
+                return;
+            _isDataLoaded = true;
+            var medicines = await medicineDatabase.GetAllMedicinesAsync();
+            foreach (var medicine in medicines)
+                Medicines.Add(new MedicineViewModel(medicine));
+        }
+
+        //async void UploatAllMedicines()
+        //{
+        //    MedicineList = await medicineDatabase.GetMedicinesAsync();
+        //}
 
         //public ObservableCollection<MedicineViewModel> medicines;
 
@@ -39,31 +79,19 @@ namespace Pillbox.ViewModels
         //    BackCommand = new Command(Back);
         //}
 
-        Medicine selectedMedicine;
-        public Medicine SelectedMedicine
-        {
-            get => selectedMedicine;
-            set
-            {
-                Set(ref selectedMedicine, value);
-                ShowMedicineDetails(value.Id);
-            }
-        }
-        async void ShowMedicineDetails(int selectedMedicineId)
-        {
-            await Navigation.PushAsync(new DetailsPage(selectedMedicineId));
-        }
+        //async void ShowMedicineDetails(int selectedMedicineId)
+        //{
+        //    await Navigation.PushAsync(new DetailsPage(selectedMedicineId));
+        //}
         async Task AddMedicine()
         {
-           await Navigation.PushAsync(new AdditionView());
+           await Navigation.PushAsync(new AdditionView(new MedicineViewModel));
         }
        
         async Task DeleteMedicine()
         {
-           await medicineDatabase.DeleteMedicineAsync(medicine.Id);
+           await medicineDatabase.DeleteMedicineAsync(_selectedMedicine.Id);
         }
-
-
 
 
         //public void Back()

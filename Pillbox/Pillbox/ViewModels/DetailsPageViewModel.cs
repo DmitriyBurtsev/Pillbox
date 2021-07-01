@@ -14,9 +14,9 @@ namespace Pillbox.ViewModels
         public DetailsPageViewModel (INavigation navigation, int selectedMedicineId)
         {
             Navigation = navigation;
-            medicine = new Models.Medicine();
-            medicine.Id = selectedMedicineId;
-            medicineDatabase = new Database.MedicineDatabase();
+            //medicine = new Models.Medicine();
+            //medicine.Id = selectedMedicineId;
+            medicineDatabase = new Database.MedicineDatabase(App.dbpath);
 
             SaveChangesCommand = new Command(async () => await SaveChanges());
             DeleteMedicineCommand = new Command(async () => await DeleteMedicine());
