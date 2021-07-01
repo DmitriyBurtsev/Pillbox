@@ -1,4 +1,6 @@
-﻿using Pillbox.ViewModels;
+﻿using Pillbox.Database;
+using Pillbox.ViewModels;
+using Pillbox.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +15,17 @@ namespace Pillbox.Views.AdditionView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AdditionView : ContentPage
     {
-        public AdditionView()
+        public AdditionView(MedicineViewModel medicineViewModel)
         {
-            InitializeComponent();           
-            BindingContext = new AdditionViewModel(Navigation);
+            InitializeComponent();
+            var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
+            var pageService = new PageService();
+            Title = (medicineViewModel.Title == null) ? "Добавление нового лекарства" : $"{Title}";
+            BindingContext = new AdditionViewModel(medicineViewModel ?? new MedicineViewModel(), medicineDatabase, pageService);
+
+
+
+
             List<string> MedicineForms = new List<string>
             {"суппозитории(я)", "инъекция(и)", "таблетка(и)","капсула(ы)", "капля(и)", "ампула(ы)",
                 "ингаляция(и)", "доза(ы) спрея", "чайная(ые) ложка(и)", "столовая(ые) ложка(и)","свеча(и)",

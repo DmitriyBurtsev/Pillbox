@@ -41,7 +41,6 @@ namespace Pillbox.ViewModels
 
 
 
-
         public MedPageViewModel(IPageSevices pageSevices, IMedicineDatabase medicineDatabase)
         {
             _pageService = pageSevices;
