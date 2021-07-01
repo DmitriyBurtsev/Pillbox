@@ -12,18 +12,20 @@ namespace Pillbox.Models
     {
        [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
-
-        public string Title; // название препарата
-
-        public string Format; // форма выпуска
-
-        public string Method; // формат приема
-
-        public MedicationViewModel Medication; // массив приемов
-
-        public DurationViewModel Duration; // длительность
-
-        public FrequencyViewModel Frequency; // частота
+        
+        [MaxLength(255)]
+        public string Title { get; set; } // название препарата
+        
+        public string Format { get; set; } // форма выпуска
+        
+        public string Method { get; set; } // формат приема
+        
+        public MedicationViewModel Medication { get; set; } // массив приемов
+        
+        
+        public DurationViewModel Duration { get; set; } // длительность
+        
+        public FrequencyViewModel Frequency { get; set; } // частота
 
     }
 }

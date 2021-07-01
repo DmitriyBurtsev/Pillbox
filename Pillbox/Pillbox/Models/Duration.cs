@@ -6,10 +6,10 @@ namespace Pillbox.Models
 {
     public class Duration
     {
-        public DateTime Start; // день начала приема
+        public DateTime Start { get; set; } // день начала приема
 
-        public int DurationDays; // количество дней приема
+        public int DurationDays { get; set; } // количество дней приема
 
-        public DateTime Finish; // дата последнего приема
+        public DateTime Finish { get; set; } // дата последнего приема
     }
 }

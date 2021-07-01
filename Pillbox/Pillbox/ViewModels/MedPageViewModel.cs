@@ -12,7 +12,7 @@ using Pillbox.Services;
 
 namespace Pillbox.ViewModels
 {
-    public class MedPageViewModel:MedicineViewModel
+    public class MedPageViewModel:BaseViewModel
     {
         public ICommand AddMedicineCommand { get; protected set; }
         public ICommand DeleteMedicineCommand { get; protected set; }

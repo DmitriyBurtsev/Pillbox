@@ -10,11 +10,11 @@ using Xamarin.Forms;
 
 namespace Pillbox.ViewModels
 {
-    public class AdditionViewModel : MedicineViewModel
+    public class AdditionViewModel
     {
         private readonly IMedicineDatabase _medicineDatabase;
         private readonly IPageSevices _pageService;
-        public Medicine Medicine { get; set; }
+        public Medicine Medicine { get; private set; }
         public ICommand SaveCommand { get; protected set; }
         public AdditionViewModel(MedicineViewModel medicineViewModel, IMedicineDatabase medicineDatabase, IPageSevices pageService)
         {
@@ -57,12 +57,12 @@ namespace Pillbox.ViewModels
             }
             if (Medicine.Id == 0)
             {
-                await medicineDatabase.AddMedicine(Medicine);
+                await _medicineDatabase.AddMedicine(Medicine);
                 MessagingCenter.Send(this, Events.MedicineAdded, Medicine);
             }
             else
             {
-                await medicineDatabase.UpdateMedicine(Medicine);
+                await _medicineDatabase.UpdateMedicine(Medicine);
                 MessagingCenter.Send(this, Events.MedicineUpdate, Medicine);
             }
             await _pageService.PopAsync();
