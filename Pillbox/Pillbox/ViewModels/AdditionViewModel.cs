@@ -55,6 +55,8 @@ namespace Pillbox.ViewModels
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите метод приёма", "OK");
                 return;
             }
+            if (Medicine.Frequency.EveryDay == true) Medicine.Frequency.InDays = 1;
+            if (Medicine.Frequency.InDays > 1) Medicine.Frequency.EveryDay = false;
             if (Medicine.Frequency==null)
             {
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите частоту приёма", "OK");

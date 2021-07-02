@@ -135,7 +135,6 @@ namespace Pillbox.Views.MainViews
                 freqIndays.IsEnabled = true;
                 freqIndLbl.IsEnabled = true;
                 freqEveryday.BindingContext = false;
-
             }
         }
 
