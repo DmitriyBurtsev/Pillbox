@@ -90,6 +90,8 @@ namespace Pillbox.Views.MainViews
             finishPicker.MinimumDate = startPicker.Date.AddDays(1);
             daysPicker.IsVisible = false;
             daysLbl.IsVisible = false;
+            startTime.Time = new TimeSpan(08, 00, 00);
+            finishTime.Time = new TimeSpan(20, 00, 00);
         }
 
         private void startPicker_DateSelected(object sender, DateChangedEventArgs e)
@@ -160,8 +162,6 @@ namespace Pillbox.Views.MainViews
         {
             daysPicker.IsVisible = false;
             daysLbl.IsVisible = false;
-
-        }
-
+        }        
     }
 }

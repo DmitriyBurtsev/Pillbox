@@ -20,9 +20,9 @@ namespace Pillbox.Models
         
         public string Method { get; set; } // формат приема
 
-        public DateTime StartMedicationTime { get; set; } // время первого приема
+        public TimeSpan  StartMedicationTime { get; set; } // время первого приема
 
-        public DateTime FinishMedicationTime { get; set; } // время последнего  приема
+        public TimeSpan FinishMedicationTime { get; set; } // время последнего  приема
 
         public float Dosage { get; set; } // доза
 

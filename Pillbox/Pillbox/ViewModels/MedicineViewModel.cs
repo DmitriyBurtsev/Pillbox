@@ -59,14 +59,14 @@ namespace Pillbox.ViewModels
             get => _method;
             set => Set(ref _method, value);
         }
-        private DateTime _startMedicationTime;
-        public DateTime StartMedicationTime
+        private TimeSpan _startMedicationTime;
+        public TimeSpan StartMedicationTime
         {
             get => _startMedicationTime;
             set => Set(ref _startMedicationTime, value);
         }
-        private DateTime _finishMedicationTime;
-        public DateTime FinishMedicationTime
+        private TimeSpan _finishMedicationTime;
+        public TimeSpan FinishMedicationTime
         {
             get => _finishMedicationTime;
             set => Set(ref _finishMedicationTime, value);
