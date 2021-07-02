@@ -62,13 +62,14 @@ namespace Pillbox.ViewModels
                 return;
             }
 
-            //if (Medicine.InDays == default)
-            
-            //    Medicine.EveryDay = true;                
-            
-            //else Medicine.EveryDay = false;
+            if (Medicine.InDays == default)
+            {
+                Medicine.EveryDay = true;
+                Medicine.InDays = 1;
+            }
+            else Medicine.EveryDay = false;
 
-                if (Medicine.InDays==default)
+            if (Medicine.InDays==default)
             {
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите частоту приёма", "OK");
                 return;
@@ -78,14 +79,12 @@ namespace Pillbox.ViewModels
                 await _pageService.DisplayAlert("Внимание", "Время последнего приёма не может быть меньше времени первого", "OK");
                 return;
             }
-            string compareTemp_1 = Medicine.Number.ToString();
-            if (string.IsNullOrWhiteSpace(compareTemp_1))
+            if (Medicine.Number==default)
             {
                 await _pageService.DisplayAlert("Внимание", "Выберите количество приёмов лекарства в день", "OK");
                 return;
             }
-            compareTemp_1 = Medicine.Dosage.ToString();
-            if (string.IsNullOrWhiteSpace(compareTemp_1))
+            if (Medicine.Dosage==default)
             {
                 await _pageService.DisplayAlert("Внимание", "Выберите дозировку", "OK");
                 return;
