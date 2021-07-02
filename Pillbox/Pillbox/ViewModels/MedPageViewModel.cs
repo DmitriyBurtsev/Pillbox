@@ -54,7 +54,7 @@ namespace Pillbox.ViewModels
             MessagingCenter.Subscribe<AdditionViewModel, Medicine>
                 (this, Events.MedicineAdded, OnMedicineAdded);
             MessagingCenter.Subscribe<AdditionViewModel, Medicine>
-                (this, Events.MedicineUpdate, OnMedicineUpdated);
+                (this, Events.MedicineUpdate, OnMedicineUpdated);            
         }
 
         private void OnMedicineUpdated(AdditionViewModel source, Medicine medicine)
