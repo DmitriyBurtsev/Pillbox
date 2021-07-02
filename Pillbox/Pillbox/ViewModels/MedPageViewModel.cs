@@ -9,6 +9,7 @@ using Pillbox.Database;
 using System.Threading.Tasks;
 using Pillbox.Models;
 using Pillbox.Services;
+using System.Linq;
 
 namespace Pillbox.ViewModels
 {
@@ -35,7 +36,7 @@ namespace Pillbox.ViewModels
             }
         }
 
-        public ObservableCollection<MedicineViewModel> Medicines { get; private set; } 
+        public ObservableCollection<MedicineViewModel> Medicines { get; set; } 
             = new ObservableCollection<MedicineViewModel>();
 
 
@@ -49,6 +50,35 @@ namespace Pillbox.ViewModels
             AddMedicineCommand = new Command(async () => await AddMedicine());
             DeleteMedicineCommand = new Command<MedicineViewModel>(async c => await DeleteMedicine(c));
             SelectMedicineCommand = new Command<MedicineViewModel>(async c => await SelectMedicine(c));
+
+            MessagingCenter.Subscribe<AdditionViewModel, Medicine>
+                (this, Events.MedicineAdded, OnMedicineAdded);
+            MessagingCenter.Subscribe<AdditionViewModel, Medicine>
+                (this, Events.MedicineUpdate, OnMedicineUpdated);
+        }
+
+        private void OnMedicineUpdated(AdditionViewModel source, Medicine medicine)
+        {
+            var medicineInList = Medicines.Single(c => c.Id == medicine.Id);
+            medicineInList.Id = medicine.Id;
+            medicineInList.Dosage = medicine.Dosage;
+            medicineInList.DurationDays = medicine.DurationDays;
+            medicineInList.EveryDay = medicine.EveryDay;
+            medicineInList.Finish = medicine.Finish;
+            medicineInList.FinishMedicationTime = medicine.FinishMedicationTime;
+            medicineInList.Format = medicine.Format;
+            medicineInList.InDays = medicine.InDays;
+            medicineInList.Method = medicine.Method;
+            medicineInList.NonStop = medicine.NonStop;
+            medicineInList.Number = medicine.Number;
+            medicineInList.Start = medicine.Start;
+            medicineInList.StartMedicationTime = medicine.StartMedicationTime;
+            medicineInList.Title = medicine.Title;
+        }
+
+        private void OnMedicineAdded(AdditionViewModel source, Medicine medicine)
+        {
+            Medicines.Add(new MedicineViewModel(medicine));
         }
 
         private async Task SelectMedicine(MedicineViewModel medicine)
