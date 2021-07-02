@@ -36,5 +36,7 @@ namespace Pillbox.Models
         public bool EveryDay { get; set; } // флаг: ежедневно
 
         public int InDays { get; set; } // через сколько дней
+
+        public bool NonStop { get; set; } // без даты окончания
     }
 }

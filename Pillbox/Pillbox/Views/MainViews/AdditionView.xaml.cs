@@ -91,7 +91,6 @@ namespace Pillbox.Views.MainViews
             daysPicker.IsVisible = false;
             daysPicker.IsEnabled = false;
             daysLbl.IsVisible = false;
-            //daysPicker.SelectedIndex = default;
         }
 
         private void startPicker_DateSelected(object sender, DateChangedEventArgs e)

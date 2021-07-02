@@ -37,6 +37,7 @@ namespace Pillbox.ViewModels
             Finish = medicine.Finish;
             EveryDay = medicine.EveryDay;
             InDays = medicine.InDays;
+            NonStop = medicine.NonStop;
 
         }
         public int Id { get; set; }
@@ -92,6 +93,8 @@ namespace Pillbox.ViewModels
         public bool EveryDay { get=> _everyDay; set=>Set(ref _everyDay, value); }
         private int _inDays;
         public int InDays { get=> _inDays; set=>Set(ref _inDays, value); }
+        private bool _nonStop;
+        public bool NonStop { get=> _nonStop; set=>Set(ref _nonStop, value); }
 
         //public ObservableCollection<Medication> Medications
         //{

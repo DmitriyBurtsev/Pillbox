@@ -41,6 +41,7 @@ namespace Pillbox.ViewModels
                 EveryDay = medicineViewModel.EveryDay,
                 InDays = medicineViewModel.InDays,
                 Number = medicineViewModel.Number,
+                NonStop = medicineViewModel.NonStop,
             };
         }
 
@@ -62,14 +63,19 @@ namespace Pillbox.ViewModels
                 return;
             }
 
-            if (Medicine.InDays == default)
+            if (Medicine.NonStop==true)
             {
-                Medicine.EveryDay = true;
+                Medicine.Finish = default;
+                Medicine.DurationDays = default;
+            }
+
+            if (Medicine.EveryDay == true)
+            {               
                 Medicine.InDays = 1;
             }
-            else Medicine.EveryDay = false;
+            else Medicine.InDays = default;
 
-            if (Medicine.InDays==default)
+            if (Medicine.InDays==default && Medicine.EveryDay==false)
             {
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите частоту приёма", "OK");
                 return;
