@@ -69,11 +69,10 @@ namespace Pillbox.ViewModels
                 Medicine.DurationDays = default;
             }
 
-            if (Medicine.EveryDay == true)
-            {               
+            if (Medicine.EveryDay == true)                  
                 Medicine.InDays = 1;
-            }
-            else Medicine.InDays = default;
+            if (Medicine.InDays != default)
+                Medicine.EveryDay = false;
 
             if (Medicine.InDays==default && Medicine.EveryDay==false)
             {
@@ -82,7 +81,7 @@ namespace Pillbox.ViewModels
             }
             if (Medicine.FinishMedicationTime <= Medicine.StartMedicationTime)
             {
-                await _pageService.DisplayAlert("Внимание", "Время последнего приёма не может быть меньше времени первого", "OK");
+                await _pageService.DisplayAlert("Внимание", "Время последнего приёма не может быть меньше или равным времени первого", "OK");
                 return;
             }
             if (Medicine.Number==default)

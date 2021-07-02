@@ -89,7 +89,6 @@ namespace Pillbox.Views.MainViews
             startPicker.MinimumDate = DateTime.Today;
             finishPicker.MinimumDate = startPicker.Date.AddDays(1);
             daysPicker.IsVisible = false;
-            daysPicker.IsEnabled = false;
             daysLbl.IsVisible = false;
         }
 
@@ -122,18 +121,12 @@ namespace Pillbox.Views.MainViews
             if (freqEveryday.IsChecked == true)
             {
                 freqIndays.IsVisible = false;
-                freqIndLbl.IsVisible = false;
-                freqIndays.IsEnabled = false;
-                freqIndLbl.IsEnabled = false;
-                freqEveryday.BindingContext = true;
+                freqIndLbl.IsVisible = false;               
             }
             else
             {
                 freqIndays.IsVisible = true;
-                freqIndLbl.IsVisible = true;
-                freqIndays.IsEnabled = true;
-                freqIndLbl.IsEnabled = true;
-                freqEveryday.BindingContext = false;
+                freqIndLbl.IsVisible = true;               
             }
         }
 
@@ -142,25 +135,17 @@ namespace Pillbox.Views.MainViews
             if (freqIndays.IsChecked == true)
             {
                 freqEveryday.IsVisible = false;
-                freqEvrLbl.IsVisible = false;
-                freqEveryday.IsEnabled = false;
-                freqEvrLbl.IsEnabled = false;
+                freqEvrLbl.IsVisible = false;               
                 daysPicker.IsVisible = true;
-                daysPicker.IsEnabled = true;
                 daysLbl.IsVisible = true;
 
             }
             else
             {
                 freqEveryday.IsVisible = true;
-                freqEvrLbl.IsVisible = true;
-                freqEveryday.IsEnabled = true;
-                freqEvrLbl.IsEnabled = true;
+                freqEvrLbl.IsVisible = true;               
                 daysPicker.IsVisible = false;
-                daysPicker.IsEnabled = false;
                 daysLbl.IsVisible = false;
-
-
             }
         }
 
