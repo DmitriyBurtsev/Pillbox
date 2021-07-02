@@ -32,9 +32,15 @@ namespace Pillbox.ViewModels
                 Title = medicineViewModel.Title,
                 Format = medicineViewModel.Format,
                 Method = medicineViewModel.Method,
-                Duration = medicineViewModel.Duration,
-                Frequency = medicineViewModel.Frequency,
-                Medication = medicineViewModel.Medication
+                StartMedicationTime = medicineViewModel.StartMedicationTime,
+                FinishMedicationTime = medicineViewModel.FinishMedicationTime,
+                Start = medicineViewModel.Start,
+                Finish = medicineViewModel.Finish,
+                Dosage = medicineViewModel.Dosage,
+                DurationDays = medicineViewModel.DurationDays,
+                EveryDay = medicineViewModel.EveryDay,
+                InDays = medicineViewModel.InDays,
+                Number = medicineViewModel.Number,
             };
         }
 
