@@ -19,13 +19,22 @@ namespace Pillbox.Models
         public string Format { get; set; } // форма выпуска
         
         public string Method { get; set; } // формат приема
-        
-        public MedicationViewModel Medication { get; set; } // массив приемов
-        
-        
-        public DurationViewModel Duration { get; set; } // длительность
-        
-        public FrequencyViewModel Frequency { get; set; } // частота
 
+        public DateTime StartMedicationTime { get; set; } // время первого приема
+
+        public DateTime FinishMedicationTime { get; set; } // время последнего  приема
+
+        public float Dosage { get; set; } // доза
+
+        public int Number { get; set; } // количество приемов в день
+
+        public DateTime Start { get; set; } // день начала приема
+
+        public int DurationDays { get; set; } // количество дней приема
+
+        public DateTime Finish { get; set; } // дата последнего приема        
+        public bool EveryDay { get; set; } // флаг: ежедневно
+
+        public int InDays { get; set; } // через сколько дней
     }
 }

@@ -32,9 +32,9 @@ namespace Pillbox.ViewModels
                 Title = medicineViewModel.Title,
                 Format = medicineViewModel.Format,
                 Method = medicineViewModel.Method,
-                Duration = medicineViewModel.DurationVM,
-                Frequency = medicineViewModel.FrequencyVM,
-                Medication = medicineViewModel.MedicationVM
+                Duration = medicineViewModel.Duration,
+                Frequency = medicineViewModel.Frequency,
+                Medication = medicineViewModel.Medication
             };
         }
 
@@ -55,9 +55,14 @@ namespace Pillbox.ViewModels
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите метод приёма", "OK");
                 return;
             }
-            if (Medicine.Frequency.EveryDay == true) Medicine.Frequency.InDays = 1;
-            if (Medicine.Frequency.InDays > 1) Medicine.Frequency.EveryDay = false;
-            if (Medicine.Frequency==null)
+
+            //if (Medicine.Frequency.InDays == default)
+            
+            //    Medicine.Frequency.EveryDay = true;                
+            
+            //else Medicine.Frequency.EveryDay = false;
+
+                if (Medicine.Frequency.InDays==default)
             {
                 await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите частоту приёма", "OK");
                 return;
@@ -67,14 +72,14 @@ namespace Pillbox.ViewModels
                 await _pageService.DisplayAlert("Внимание", "Время последнего приёма не может быть меньше времени первого", "OK");
                 return;
             }
-            string comparison = Medicine.Medication.Number.ToString();
-            if (string.IsNullOrEmpty(comparison))
+            string compareTemp_1 = Medicine.Medication.Number.ToString();
+            if (string.IsNullOrWhiteSpace(compareTemp_1))
             {
                 await _pageService.DisplayAlert("Внимание", "Выберите количество приёмов лекарства в день", "OK");
                 return;
             }
-            comparison = Medicine.Medication.Dosage.ToString();
-            if (string.IsNullOrEmpty(comparison))
+            compareTemp_1 = Medicine.Medication.Dosage.ToString();
+            if (string.IsNullOrWhiteSpace(compareTemp_1))
             {
                 await _pageService.DisplayAlert("Внимание", "Выберите дозировку", "OK");
                 return;

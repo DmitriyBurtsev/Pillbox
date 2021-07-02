@@ -28,9 +28,16 @@ namespace Pillbox.ViewModels
             Title = medicine.Title;
             Format = medicine.Format;
             Method = medicine.Method;
-            DurationVM = medicine.Duration;
-            FrequencyVM = medicine.Frequency;
-            MedicationVM = medicine.Medication;
+            StartMedicationTime = medicine.StartMedicationTime;
+            FinishMedicationTime = medicine.FinishMedicationTime;
+            Dosage = medicine.Dosage;
+            Number = medicine.Number;
+            Start = medicine.Start;
+            DurationDays = medicine.DurationDays;
+            Finish = medicine.Finish;
+            EveryDay = medicine.EveryDay;
+            InDays = medicine.InDays;
+
         }
         public int Id { get; set; }
         private string _title; 
@@ -51,26 +58,40 @@ namespace Pillbox.ViewModels
             get => _method;
             set => Set(ref _method, value);
         }
-        public MedicationViewModel _medicationVM;
-        public MedicationViewModel MedicationVM
+        private DateTime _startMedicationTime;
+        public DateTime StartMedicationTime
         {
-            get => _medicationVM;
-            set => Set(ref _medicationVM, value);
+            get => _startMedicationTime;
+            set => Set(ref _startMedicationTime, value);
         }
-        public DurationViewModel _durationVM;
-        public DurationViewModel DurationVM
+        private DateTime _finishMedicationTime;
+        public DateTime FinishMedicationTime
         {
-            get => _durationVM;
-            set => Set(ref _durationVM, value);
+            get => _finishMedicationTime;
+            set => Set(ref _finishMedicationTime, value);
         }
-        public FrequencyViewModel _frequencyVM;
-        public FrequencyViewModel FrequencyVM
+        private float _dosage;
+        public float Dosage
         {
-            get => _frequencyVM;
-            set => Set(ref _frequencyVM, value);
+            get => _dosage;
+            set => Set(ref _dosage, value);
         }
-
-
+        private int _number;
+        public int Number 
+        { 
+            get=>_number; 
+            set=>Set(ref _number, value); 
+        }
+        private DateTime _start;
+        public DateTime Start { get=>_start; set=>Set(ref _start, value); }
+        private int _durationDays;
+        public int DurationDays { get=> _durationDays; set=>Set(ref _durationDays, value); }
+        private DateTime _finish;
+        public DateTime Finish { get=> _finish; set=>Set(ref _finish, value); }
+        private bool _everyDay;
+        public bool EveryDay { get=> _everyDay; set=>Set(ref _everyDay, value); }
+        private int _inDays;
+        public int InDays { get=> _inDays; set=>Set(ref _inDays, value); }
 
         //public ObservableCollection<Medication> Medications
         //{

@@ -30,15 +30,15 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Column="0" Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
-                    <DatePicker DateSelected="startPicker_DateSelected" x:Name="startPicker" Date="{Binding Medicine.Duration.Start}" Margin="0,10,0,0"/>
+                    <DatePicker DateSelected="startPicker_DateSelected" x:Name="startPicker" Date="{Binding Medicine.Start}" Margin="0,10,0,0"/>
                     <Label x:Name="finishLabel" Grid.Column="1" Text=" Дата окончания" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
-                    <DatePicker DateSelected="finishPicker_DateSelected" x:Name="finishPicker" Grid.Column="1" Date="{Binding Medicine.Duration.Finish}" Margin="0,10,0,0"/>
+                    <DatePicker DateSelected="finishPicker_DateSelected" x:Name="finishPicker" Grid.Column="1" Date="{Binding Medicine.Finish}" Margin="0,10,0,0"/>
                     <CheckBox CheckedChanged="checkBox_CheckedChanged" Grid.Column="2" x:Name="checkBox" Margin="10,0,0,0"/>
                     <Label Grid.Column="3" Text="Без даты окончания" FontSize="Medium" Margin="0,7,0,0"/>
                     <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysLabel" Text="{Binding Source={x:Reference daysStepper},
                     Path=Value, StringFormat=' Количество дней приёма: {0}'}" FontSize="Medium" FontAttributes="None" Padding="0,0,0,0"/>
                     <Stepper ValueChanged="daysStepper_ValueChanged" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysStepper" Minimum="1" Maximum="366" Increment="1" 
-                         Value="{Binding Medicine.Duration.DurationDays}" WidthRequest="20" HeightRequest="40" Margin="0,25,0,0"/>
+                         Value="{Binding Medicine.DurationDays}" WidthRequest="20" HeightRequest="40" Margin="0,25,0,0"/>
                 </Grid>
 
                 <Label Text=" Частота" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
@@ -53,13 +53,13 @@
                         <ColumnDefinition Width="90"/>
                         <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
-                    <CheckBox x:Name="freqEveryday" Grid.Column="0" Grid.Row="0" CheckedChanged="freqEveryday_CheckedChanged" BindingContext="{Binding Medicine.Frequency.EveryDay}"/>
+                    <CheckBox x:Name="freqEveryday" Grid.Column="0" Grid.Row="0" CheckedChanged="freqEveryday_CheckedChanged"/>
                     <CheckBox x:Name="freqIndays" Grid.Column="0" Grid.Row="1" CheckedChanged="freqIndays_CheckedChanged"/>
                     <Label x:Name="freqEvrLbl" Margin="0,3,0,0" Text="Ежедневно" Grid.Column="1" Grid.Row="0" FontSize="Medium"/>
                     <Label x:Name="freqIndLbl" Margin="0,3,0,0" Text="{Binding Source={x:Reference daysPicker},
                     Path=SelectedItem, StringFormat='Каждые {0} дня(ей)'}" Grid.Column="1" Grid.Row="1" FontSize="Medium"/>
                     <Label Margin="0,6,0,0" x:Name="daysLbl" Text="Количество:" Grid.Row="1" Grid.Column="2"/>
-                    <Picker SelectedItem="{Binding Medicine.Frequency.InDays}" Grid.Column="3" Grid.Row="1"
+                    <Picker SelectedItem="{Binding Medicine.InDays}" Grid.Column="3" Grid.Row="1"
                             Unfocused="daysPicker_Unfocused" x:Name="daysPicker" Margin="0,12,0,0" SelectedIndexChanged="daysPicker_SelectedIndexChanged">
                         <Picker.Items/>
                     </Picker>
