@@ -11,9 +11,7 @@ using Xamarin.Forms;
 namespace Pillbox.ViewModels
 {
     public class MedicineViewModel:BaseViewModel
-    {
-        public INavigation Navigation;
-        public MedicineDatabase medicineDatabase;
+    {       
 
         //public MedPageViewModel medPageViewModel;
         //public MedPageViewModel ListViewModel

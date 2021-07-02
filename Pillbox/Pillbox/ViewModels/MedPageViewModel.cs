@@ -39,7 +39,7 @@ namespace Pillbox.ViewModels
         public ObservableCollection<MedicineViewModel> Medicines { get; set; } 
             = new ObservableCollection<MedicineViewModel>();
 
-
+        
 
         public MedPageViewModel(IPageSevices pageSevices, IMedicineDatabase medicineDatabase)
         {

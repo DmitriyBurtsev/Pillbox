@@ -14,7 +14,7 @@ namespace Pillbox.Views.MainViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MedPage : ContentPage
     {       
-        public MedPageViewModel ViewNodelMP
+        public MedPageViewModel ViewModelMP
         {
             get => BindingContext as MedPageViewModel;
             set => BindingContext = value;
@@ -23,17 +23,18 @@ namespace Pillbox.Views.MainViews
         {
             var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
-            ViewNodelMP = new MedPageViewModel(pageService, medicineDB);
+            ViewModelMP = new MedPageViewModel(pageService, medicineDB);
             InitializeComponent();            
         }
         protected override void OnAppearing()
         {
-            ViewNodelMP.LoadMedicinesCommand.Execute(null);
-            base.OnAppearing();           
+            ViewModelMP.LoadMedicinesCommand.Execute(null);
+            base.OnAppearing();
         }
+
         void OnMedicineSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ViewNodelMP.SelectMedicineCommand.Execute(e.SelectedItem);
+            ViewModelMP.SelectMedicineCommand.Execute(e.SelectedItem);
         }
 
         private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)

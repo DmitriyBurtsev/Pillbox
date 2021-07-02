@@ -16,9 +16,11 @@ namespace Pillbox.Database
         public MedicineDatabase(ISQLiteDb db)
         {
             _connection = db.GetConnection();
+            _connection.DropTableAsync<Medicine>();
             _connection.CreateTableAsync<Medicine>();
         }
-        
+       
+
         public async Task<IEnumerable<Medicine>> UpdateMedicineList()
         {
             return await _connection.Table<Medicine>().ToListAsync();
@@ -42,6 +44,6 @@ namespace Pillbox.Database
         public async Task DeleteMedicine(Medicine contact)
         {
             await _connection.DeleteAsync(contact);
-        }
+        }       
     }
 }

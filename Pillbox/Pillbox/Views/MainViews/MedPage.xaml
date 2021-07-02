@@ -17,14 +17,14 @@
             </Grid.ColumnDefinitions>
             <ScrollView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                 <StackLayout>
-                    <ListView ItemsSource="{Binding Medicines, Mode=TwoWay}" SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}" 
+                    <ListView x:Name="listView" ItemsSource="{Binding Medicines, Mode=TwoWay}" SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}" 
                           HasUnevenRows="True" SeparatorColor="#005400" ItemSelected="OnMedicineSelected">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <ViewCell.View>
                                         <StackLayout>
-                                            <Label Text="{Binding Source=Medicines, Path=Title}" FontSize="Large" />
+                                            <Label Text="{Binding Source=Medicines, Path=Title}" FontSize="Large"/>
                                             <Label Text="{Binding Source=Medicines, Path=Format}" FontSize="Small"/>
                                             <Label Text="{Binding Source=Medicines, Path=Method}" FontSize="Small"/>                                               
                                             </StackLayout>
