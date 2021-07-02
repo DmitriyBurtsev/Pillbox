@@ -42,19 +42,42 @@ namespace Pillbox.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Medicine.Title))
             {
-                await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите название лекарства", "OK");
+                await _pageService.DisplayAlert("Внимание", "Пожалуйста, введите название лекарства", "OK");
                 return;
             }
             if (string.IsNullOrWhiteSpace(Medicine.Format))
             {
-                await _pageService.DisplayAlert("Ошибка", "Пожалуйста, выберите лекарственную форму", "OK");
+                await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите единицы измерения", "OK");
                 return;
             }
             if (string.IsNullOrWhiteSpace(Medicine.Method))
             {
-                await _pageService.DisplayAlert("Ошибка", "Пожалуйста, введите форму приёма лекарства", "OK");
+                await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите метод приёма", "OK");
                 return;
             }
+            if (Medicine.Frequency==null)
+            {
+                await _pageService.DisplayAlert("Внимание", "Пожалуйста, выберите частоту приёма", "OK");
+                return;
+            }
+            if (Medicine.Medication.FinishMedicationTime <= Medicine.Medication.StartMedicationTime)
+            {
+                await _pageService.DisplayAlert("Внимание", "Время последнего приёма не может быть меньше времени первого", "OK");
+                return;
+            }
+            string comparison = Medicine.Medication.Number.ToString();
+            if (string.IsNullOrEmpty(comparison))
+            {
+                await _pageService.DisplayAlert("Внимание", "Выберите количество приёмов лекарства в день", "OK");
+                return;
+            }
+            comparison = Medicine.Medication.Dosage.ToString();
+            if (string.IsNullOrEmpty(comparison))
+            {
+                await _pageService.DisplayAlert("Внимание", "Выберите дозировку", "OK");
+                return;
+            }
+
             if (Medicine.Id == 0)
             {
                 await _medicineDatabase.AddMedicine(Medicine);
