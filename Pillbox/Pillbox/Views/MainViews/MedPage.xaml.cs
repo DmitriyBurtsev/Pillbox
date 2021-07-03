@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SQLite;
 using Pillbox.Database;
+using Pillbox.Models;
 using Pillbox.Services;
 using Pillbox.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Collections;
+using System.Collections.ObjectModel;
 
 namespace Pillbox.Views.MainViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MedPage : ContentPage
-    {       
+    {
+        //private IMedicineDatabase _connection;
         public MedPageViewModel ViewModelMP
         {
             get => BindingContext as MedPageViewModel;
@@ -21,10 +26,12 @@ namespace Pillbox.Views.MainViews
         }
         public MedPage()
         {
+            //_connection= new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
             ViewModelMP = new MedPageViewModel(pageService, medicineDB);
-            InitializeComponent();            
+            InitializeComponent();
+
         }
         protected override void OnAppearing()
         {
@@ -36,10 +43,16 @@ namespace Pillbox.Views.MainViews
         {
             ViewModelMP.SelectMedicineCommand.Execute(e.SelectedItem);
         }
-
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-
-        }
+       
+        //async void RefreshUsers()
+        //{
+        //    var userlist = await _connection.UpdateMedicineList();
+        //    listView.ItemsSource = userlist;
+        //}
+        //private void listView_Refreshing(object sender, EventArgs e)
+        //{
+        //    RefreshUsers();
+        //    listView.EndRefresh();
+        //}
     }
 }

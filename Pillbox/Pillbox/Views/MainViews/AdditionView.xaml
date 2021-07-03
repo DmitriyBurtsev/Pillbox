@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:viewmodels="clr-namespace:Pillbox.ViewModels"
+             xmlns:local="clr-namespace:Pillbox.Services"
              x:DataType="viewmodels:AdditionViewModel"
              x:Class="Pillbox.Views.MainViews.AdditionView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DatetimeToStringConverter x:Key="dateConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         
         <ScrollView>

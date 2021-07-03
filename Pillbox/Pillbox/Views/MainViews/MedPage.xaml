@@ -26,8 +26,8 @@
                                         <StackLayout>
                                             <Label Text="{Binding Source=Medicines, Path=Title}" FontSize="Large"/>
                                             <Label Text="{Binding Source=Medicines, Path=Format}" FontSize="Small"/>
-                                            <Label Text="{Binding Source=Medicines, Path=Method}" FontSize="Small"/>                                               
-                                            </StackLayout>
+                                            <Label Text="{Binding Source=Medicines, Path=Method}" FontSize="Small"/>
+                                        </StackLayout>
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>

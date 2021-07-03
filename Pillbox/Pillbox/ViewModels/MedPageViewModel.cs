@@ -91,12 +91,18 @@ namespace Pillbox.ViewModels
 
         private async Task Load()
         {
-           if(_isDataLoaded)
-                return;
-            _isDataLoaded = true;
-            var medicines = await _medicineDB.UpdateMedicineList();
-            foreach (var medicine in medicines)
-                Medicines.Add(new MedicineViewModel(medicine));
+            try
+            {
+                if (_isDataLoaded)
+                    return;
+                _isDataLoaded = true;
+                var medicines = await _medicineDB.UpdateMedicineList();
+                foreach (var medicine in medicines)
+                    Medicines.Add(new MedicineViewModel(medicine));
+            }
+            catch (Exception)
+            { throw; }
+
         }
 
         async Task AddMedicine()
