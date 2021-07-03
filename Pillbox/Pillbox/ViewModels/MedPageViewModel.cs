@@ -36,8 +36,10 @@ namespace Pillbox.ViewModels
             }
         }
 
-        public ObservableCollection<MedicineViewModel> Medicines { get; set; } 
+        public ObservableCollection<MedicineViewModel> Medicines { get; set; }
             = new ObservableCollection<MedicineViewModel>();
+        
+        
 
         
 
@@ -45,7 +47,8 @@ namespace Pillbox.ViewModels
         {
             _pageService = pageSevices;
             _medicineDB = medicineDatabase;
-           
+           // _medicines = new ObservableCollection<MedicineViewModel>();
+                       
             LoadMedicinesCommand = new Command(async () => await Load());
             AddMedicineCommand = new Command(async () => await AddMedicine());
             DeleteMedicineCommand = new Command<MedicineViewModel>(async c => await DeleteMedicine(c));
@@ -91,6 +94,7 @@ namespace Pillbox.ViewModels
 
         private async Task Load()
         {
+            Medicines.Clear();
             try
             {
                 if (_isDataLoaded)
@@ -118,10 +122,7 @@ namespace Pillbox.ViewModels
                 var medicine = await _medicineDB.GetMedicine(deleteMedicine.Id); // поиск medicine в базе по его ID
                 await _medicineDB.DeleteMedicine(medicine);
             }
-        }
-
-
-
+        }     
 
 
 

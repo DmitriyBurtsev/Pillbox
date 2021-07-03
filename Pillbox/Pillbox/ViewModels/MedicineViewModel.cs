@@ -11,7 +11,7 @@ using Xamarin.Forms;
 namespace Pillbox.ViewModels
 {
     public class MedicineViewModel:BaseViewModel
-    {       
+    {
 
         //public MedPageViewModel medPageViewModel;
         //public MedPageViewModel ListViewModel
@@ -19,6 +19,7 @@ namespace Pillbox.ViewModels
         //    get => medPageViewModel;
         //    set => Set(ref medPageViewModel, value);
         //}
+
         public MedicineViewModel() { }
         public MedicineViewModel(Medicine medicine)
         {
@@ -94,6 +95,7 @@ namespace Pillbox.ViewModels
         private bool _nonStop;
         public bool NonStop { get=> _nonStop; set=>Set(ref _nonStop, value); }
 
+      
         //public ObservableCollection<Medication> Medications
         //{
         //    get => medicine.medications;

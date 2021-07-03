@@ -19,6 +19,7 @@ namespace Pillbox.Views.MainViews
     public partial class MedPage : ContentPage
     {
         //private IMedicineDatabase _connection;
+        static object locker = new object();
         public MedPageViewModel ViewModelMP
         {
             get => BindingContext as MedPageViewModel;
@@ -30,13 +31,14 @@ namespace Pillbox.Views.MainViews
             var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
             ViewModelMP = new MedPageViewModel(pageService, medicineDB);
-            InitializeComponent();
-
+            InitializeComponent();                      
         }
         protected override void OnAppearing()
         {
+           
             ViewModelMP.LoadMedicinesCommand.Execute(null);
             base.OnAppearing();
+            
         }
 
         void OnMedicineSelected(object sender, SelectedItemChangedEventArgs e)
