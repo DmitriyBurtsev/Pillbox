@@ -23,8 +23,8 @@ namespace Pillbox.ViewModels
         private bool _isDataLoaded;
 
         private IMedicineDatabase _medicineDB;
-
         private IPageSevices _pageService;
+        private INotificationManager _notificationManager;
 
         private MedicineViewModel _selectedMedicine;
         public MedicineViewModel SelectedMedicine
@@ -47,8 +47,10 @@ namespace Pillbox.ViewModels
         {
             _pageService = pageSevices;
             _medicineDB = medicineDatabase;
-           // _medicines = new ObservableCollection<MedicineViewModel>();
-                       
+            _notificationManager = DependencyService.Get<INotificationManager>();
+
+            // _medicines = new ObservableCollection<MedicineViewModel>();
+
             LoadMedicinesCommand = new Command(async () => await Load());
             AddMedicineCommand = new Command(async () => await AddMedicine());
             DeleteMedicineCommand = new Command<MedicineViewModel>(async c => await DeleteMedicine(c));
