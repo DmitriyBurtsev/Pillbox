@@ -24,7 +24,7 @@ namespace Pillbox.ViewModels
 
         private IMedicineDatabase _medicineDB;
         private IPageSevices _pageService;
-        private INotificationManager _notificationManager;
+        //private INotificationManager _notificationManager; // локальные уведомления
 
         private MedicineViewModel _selectedMedicine;
         public MedicineViewModel SelectedMedicine
@@ -47,7 +47,7 @@ namespace Pillbox.ViewModels
         {
             _pageService = pageSevices;
             _medicineDB = medicineDatabase;
-            _notificationManager = DependencyService.Get<INotificationManager>();
+            //_notificationManager = DependencyService.Get<INotificationManager>(); // локальные уведомления
 
             // _medicines = new ObservableCollection<MedicineViewModel>();
 
@@ -61,6 +61,7 @@ namespace Pillbox.ViewModels
             MessagingCenter.Subscribe<AdditionViewModel, Medicine>
                 (this, Events.MedicineUpdate, OnMedicineUpdated);            
         }
+
 
         private void OnMedicineUpdated(AdditionViewModel source, Medicine medicine)
         {
