@@ -1,23 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pillbox.Views.MainViews.MedPage"
              xmlns:vm="clr-namespace:Pillbox.ViewModels"
-             Title="Мои лекарства">   
-    
-        <ScrollView Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2">
-            <StackLayout>
-                <ListView ItemsSource="{Binding }">
-                    
-                    
-                    
-                    
-                </ListView>
-            </StackLayout>
-        </ScrollView>
-        <!--<Button Grid.Row="1" Grid.Column="1" Text="+ Добавить" FontSize="Medium" FontAttributes="None" TextColor="White"
-                        BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End"
-               Command="{Binding AddMedicineCommand}"/>-->
+             x:DataType="vm:MedPageViewModel"
+             x:Class="Pillbox.Views.MainViews.MedPage"
+             Title="Мои лекарства" x:Name="medPage">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ScrollView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    <ListView x:Name="listView" ItemsSource="{Binding Medicines}" SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}" 
+                          HasUnevenRows="True" SeparatorColor="#005400" ItemSelected="OnMedicineSelected" IsVisible="True" IsTabStop="False" IsEnabled="True" IsRefreshing="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                        <ViewCell>
+                            <Grid IsVisible="True" IsEnabled="True">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Text="{Binding Source=Medicines, Path=Title}" FontSize="Large"/>
+                                <Label Text="{Binding Source=Medicines, Path=Format}"/>
+                                <Label Text="{Binding Source=Medicines, Path=Method}"/>
+
+
+                            </Grid>                            
+                        </ViewCell>
+                    </DataTemplate>
+                        </ListView.ItemTemplate>
+
+
+
+
+                    </ListView>
+            </ScrollView>
+            <Button Grid.Row="1" Grid.Column="1" Text="+ Добавить" FontSize="Medium" FontAttributes="None" TextColor="White"
+                        BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End" 
+                Command="{Binding AddMedicineCommand}" Margin="0,0,30,30"/>
+        </Grid>
 
 
 

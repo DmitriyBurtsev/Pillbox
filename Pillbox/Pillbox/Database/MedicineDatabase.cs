@@ -9,37 +9,41 @@ using System.IO;
 
 namespace Pillbox.Database
 {
-    public class MedicineDatabase
+    public class MedicineDatabase:IMedicineDatabase
     {
-        static SQLiteAsyncConnection sqliteconection;
-        public const string DbFileName = "medicines.db";
+        private SQLiteAsyncConnection _connection;
 
-        public MedicineDatabase()
+        public MedicineDatabase(ISQLiteDb db)
         {
-            sqliteconection = new SQLiteAsyncConnection(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbFileName));
-            sqliteconection.CreateTableAsync<Medicine>();
+            _connection = db.GetConnection();
+            //_connection.DropTableAsync<Medicine>(); // удаление БД
+            _connection.CreateTableAsync<Medicine>();
         }
        
-        public async Task<List<Medicine>> GetMedicinesAsync()
+
+        public async Task<IEnumerable<Medicine>> UpdateMedicineList()
         {
-            return await sqliteconection.Table<Medicine>().ToListAsync();
+            return await _connection.Table<Medicine>().ToListAsync();
         }
-        public async Task<Medicine> GetMedicineAsync(int id)
+
+        public async Task<Medicine> GetMedicine(int id)
         {
-            return await sqliteconection.GetAsync<Medicine>(id);
+            return await _connection.FindAsync<Medicine>(id);
         }
-        public async Task<int> DeleteMedicineAsync(int id)
+
+        public  async Task AddMedicine(Medicine contact)
         {
-            return await sqliteconection.DeleteAsync(id);
+            await _connection.InsertAsync(contact);
         }
-        public async Task<int> SaveMedicineAsync(Medicine item)
+
+        public async Task UpdateMedicine(Medicine contact)
         {
-            if (item.Id != 0)
-            {
-                await sqliteconection.UpdateAsync(item);
-                return item.Id;
-            }
-            else return await sqliteconection.InsertAsync(item);
+            await _connection.UpdateAsync(contact);
         }
+
+        public async Task DeleteMedicine(Medicine contact)
+        {
+            await _connection.DeleteAsync(contact);
+        }       
     }
 }

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Pillbox.ViewModels"
+             xmlns:local="clr-namespace:Pillbox.Services"
+             x:DataType="viewmodels:AdditionViewModel"
+             x:Class="Pillbox.Views.MainViews.AdditionView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:DatetimeToStringConverter x:Key="dateConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        
+        <ScrollView>
+            <StackLayout Margin="20">
+                <Entry x:Name="titleEntry" Placeholder="Название лекарства" PlaceholderColor="#005400" FontSize="Large" FontAttributes="Bold"
+                   Keyboard="Chat" Text="{Binding Medicine.Title}" TextColor="#005400"/>
+                <Label Text=" Единицы измерения" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
+                <Picker x:Name="formsPicker" SelectedItem="{Binding Medicine.Format}">
+                    <Picker.Items/>
+                </Picker>
+                <Label Text=" Метод приёма" TextColor="#005400" FontSize="Small" Padding="0,0,0,-20"/>
+                <Picker x:Name="methodPicker" SelectedItem="{Binding Medicine.Method}" FontSize="18">
+                    <Picker.Items/>
+                </Picker>
+                <Label Text=" Продолжительность" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="110"/>
+                        <ColumnDefinition Width="40"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Text=" Дата начала" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
+                    <DatePicker DateSelected="startPicker_DateSelected" x:Name="startPicker" Date="{Binding Medicine.Start}" Margin="0,10,0,0"/>
+                    <Label x:Name="finishLabel" Grid.Column="1" Text=" Дата окончания" FontSize="Small" FontAttributes="None" Padding="0,0,0,0"/>
+                    <DatePicker DateSelected="finishPicker_DateSelected" x:Name="finishPicker" Grid.Column="1" Date="{Binding Medicine.Finish}" Margin="0,10,0,0"/>
+                    <CheckBox CheckedChanged="checkBox_CheckedChanged" Grid.Column="2" x:Name="checkBox" Margin="10,0,0,0" IsChecked="{Binding Medicine.NonStop}"/>
+                    <Label Grid.Column="3" Text="Без даты окончания" FontSize="Medium" Margin="0,7,0,0"/>
+                    <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysLabel" Text="{Binding Source={x:Reference daysStepper},
+                    Path=Value, StringFormat=' Количество дней приёма: {0}'}" FontSize="Medium" FontAttributes="None" Padding="0,0,0,0"/>
+                    <Stepper ValueChanged="daysStepper_ValueChanged" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="daysStepper" Minimum="1" Maximum="366" Increment="1" 
+                         Value="{Binding Medicine.DurationDays}" WidthRequest="20" HeightRequest="40" Margin="0,25,0,0"/>
+                </Grid>
+
+                <Label Text=" Частота" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
+                <Grid HeightRequest="60">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox x:Name="freqEveryday" Grid.Column="0" Grid.Row="0" CheckedChanged="freqEveryday_CheckedChanged" IsChecked="{Binding Medicine.EveryDay}"/>
+                    <CheckBox x:Name="freqIndays" Grid.Column="0" Grid.Row="1" CheckedChanged="freqIndays_CheckedChanged"/>
+                    <Label x:Name="freqEvrLbl" Margin="0,3,0,0" Text="Ежедневно" Grid.Column="1" Grid.Row="0" FontSize="Medium"/>
+                    <Label x:Name="freqIndLbl" Margin="0,3,0,0" Text="{Binding Source={x:Reference daysPicker},
+                    Path=SelectedItem, StringFormat='Каждые {0} дня(ей)'}" Grid.Column="1" Grid.Row="1" FontSize="Medium"/>
+                    <Label Margin="0,6,0,0" x:Name="daysLbl" Text="Количество:" Grid.Row="1" Grid.Column="2"/>
+                    <Picker SelectedItem="{Binding Medicine.InDays}" Grid.Column="3" Grid.Row="1"
+                            Unfocused="daysPicker_Unfocused" x:Name="daysPicker" Margin="0,12,0,0" SelectedIndexChanged="daysPicker_SelectedIndexChanged">
+                        <Picker.Items/>
+                    </Picker>
+                </Grid>
+
+                <Label Text=" Приём" TextColor="#005400" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,5"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="130"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Text="Время первого приёма" Margin="6,0,0,0"/>
+                    <TimePicker Format="HH:mm" Grid.Column="0" Grid.Row="1" x:Name="startTime" Margin="2,0,0,0" Time="{Binding Medicine.StartMedicationTime}"/>
+                    <Label Grid.Column="1" Grid.Row="0" Text="Время последнего приёма"/>
+                    <TimePicker Format="HH:mm" Grid.Column="1" Grid.Row="1" x:Name="finishTime" Time="{Binding Medicine.FinishMedicationTime}"/>
+                    <Label Grid.Column="2" Grid.Row="0" Text="Количество приёмов"/>
+                    <Picker x:Name="numberPicker" Grid.Row="1" Grid.Column="2" Margin="0,0,0,0" SelectedItem="{Binding Medicine.Number}"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Дозировка: " FontSize="Medium" Margin="6,0,0,0"/>
+                    <Picker Margin="-20,-15,0,0" Grid.Column="1" Grid.Row="2" SelectedItem="{Binding Medicine.Dosage}" x:Name="dosagePicker"/>
+                    <Label FontSize="Medium" Margin="-125,0,0,0" x:Name="dosageLbl" Text="{Binding Source={x:Reference formsPicker}, Path=SelectedItem}" Grid.Row="2" Grid.Column="2" />
+                </Grid>
+
+                <Button x:Name="saveButton" Command="{Binding SaveCommand}" Text="Сохранить" FontSize="Small" FontAttributes="Bold" TextColor="White"
+                        BackgroundColor="#13bd13" BorderRadius="15" HorizontalOptions="Center" VerticalOptions="End"
+                    WidthRequest="175" Margin="0,10,0,30"/>
+
+
+
+
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

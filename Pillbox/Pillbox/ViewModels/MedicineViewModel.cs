@@ -12,28 +12,6 @@ namespace Pillbox.ViewModels
 {
     public class MedicineViewModel:BaseViewModel
     {
-        public Medicine medicine;
-        public INavigation Navigation;
-        public MedicineDatabase medicineDatabase;
-        public MedicationViewModel medicationVM;
-        public MedicationViewModel MedicationVM
-        {
-            get => medicationVM;
-            set => Set(ref medicationVM, value);
-        }
-        public DurationViewModel durationVM;
-        public DurationViewModel DurationVM
-        {
-            get => durationVM;
-            set => Set(ref durationVM, value);
-        }
-        public FrequencyViewModel frequencyVM;
-        public FrequencyViewModel FrequencyVM
-        {
-            get => frequencyVM;
-            set => Set(ref frequencyVM, value);
-        }
-
 
         //public MedPageViewModel medPageViewModel;
         //public MedPageViewModel ListViewModel
@@ -41,25 +19,83 @@ namespace Pillbox.ViewModels
         //    get => medPageViewModel;
         //    set => Set(ref medPageViewModel, value);
         //}
-        //public MedicineViewModel()
-        //{
-        //    medicine = new Medicine();
-        //}
+
+        public MedicineViewModel() { }
+        public MedicineViewModel(Medicine medicine)
+        {
+            Id = medicine.Id;
+            Title = medicine.Title;
+            Format = medicine.Format;
+            Method = medicine.Method;
+            StartMedicationTime = medicine.StartMedicationTime;
+            FinishMedicationTime = medicine.FinishMedicationTime;
+            Dosage = medicine.Dosage;
+            Number = medicine.Number;
+            Start = medicine.Start;
+            DurationDays = medicine.DurationDays;
+            Finish = medicine.Finish;
+            EveryDay = medicine.EveryDay;
+            InDays = medicine.InDays;
+            NonStop = medicine.NonStop;
+
+        }
+        public int Id { get; set; }
+        private string _title; 
         public string Title
         {
-            get => medicine.Title;
-            set => Set(ref medicine.Title, value);
+            get => _title;
+            set => Set(ref _title, value);
         }
+        private string _format;
         public string Format
         {
-            get => medicine.Format;
-            set => Set(ref medicine.Format, value);
+            get => _format;
+            set => Set(ref _format, value);
         }
+        private string _method;
         public string Method
         {
-            get => medicine.Method;
-            set => Set(ref medicine.Method, value);
+            get => _method;
+            set => Set(ref _method, value);
         }
+        private TimeSpan _startMedicationTime;
+        public TimeSpan StartMedicationTime
+        {
+            get => _startMedicationTime;
+            set => Set(ref _startMedicationTime, value);
+        }
+        private TimeSpan _finishMedicationTime;
+        public TimeSpan FinishMedicationTime
+        {
+            get => _finishMedicationTime;
+            set => Set(ref _finishMedicationTime, value);
+        }
+        private float _dosage;
+        public float Dosage
+        {
+            get => _dosage;
+            set => Set(ref _dosage, value);
+        }
+        private int _number;
+        public int Number 
+        { 
+            get=>_number; 
+            set=>Set(ref _number, value); 
+        }
+        private DateTime _start;
+        public DateTime Start { get=>_start; set=>Set(ref _start, value); }
+        private int _durationDays;
+        public int DurationDays { get=> _durationDays; set=>Set(ref _durationDays, value); }
+        private DateTime _finish;
+        public DateTime Finish { get=> _finish; set=>Set(ref _finish, value); }
+        private bool _everyDay;
+        public bool EveryDay { get=> _everyDay; set=>Set(ref _everyDay, value); }
+        private int _inDays;
+        public int InDays { get=> _inDays; set=>Set(ref _inDays, value); }
+        private bool _nonStop;
+        public bool NonStop { get=> _nonStop; set=>Set(ref _nonStop, value); }
+
+      
         //public ObservableCollection<Medication> Medications
         //{
         //    get => medicine.medications;
@@ -75,11 +111,11 @@ namespace Pillbox.ViewModels
         //    get => medicine.frequency;
         //    set => Set(ref medicine.frequency, value);
         //}
-        public List<Medicine> medicineList;
-        public List<Medicine> MedicineList
-        {
-            get => medicineList;
-            set => Set(ref medicineList, value);
-        }
+        //public List<Medicine> medicineList;
+        //public List<Medicine> MedicineList
+        //{
+        //    get => medicineList;
+        //    set => Set(ref medicineList, value);
+        //}
     }
 }

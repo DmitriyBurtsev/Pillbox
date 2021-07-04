@@ -10,18 +10,7 @@ namespace Pillbox
 {
     public partial class App : Application
     {
-        public static MedicineDatabase database;
-        public static MedicineDatabase Database
-        {
-            get
-            {
-                if (database == null)
-                {
-                    database = new MedicineDatabase();
-                }
-                return database;
-            }
-        }
+        
         public App()
         {
             InitializeComponent();            

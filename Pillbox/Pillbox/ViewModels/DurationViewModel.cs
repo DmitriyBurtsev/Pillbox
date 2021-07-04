@@ -7,21 +7,29 @@ namespace Pillbox.ViewModels
 {
     public class DurationViewModel:BaseViewModel
     {
-        public Duration _duration;
+        public DurationViewModel(Duration duration)
+        {
+            Start = duration.Start;
+            DurationDays = duration.DurationDays;
+            Finish = duration.Finish;
+        }
+        private DateTime _start;
         public DateTime Start
         {
-            get => _duration.Start;
-            set => Set(ref _duration.Start, value);
+            get => _start;
+            set => Set(ref _start, value);
         }
+        private int _durationDays;
         public int DurationDays
         {
-            get => _duration.DurationDays;
-            set => Set(ref _duration.DurationDays, value);
+            get => _durationDays;
+            set => Set(ref _durationDays, value);
         }
+        private DateTime _finish;
         public DateTime Finish
         {
-            get => _duration.Finish;
-            set => Set(ref _duration.Finish, value);
+            get => _finish;
+            set => Set(ref _finish, value);
         }
     }
 }

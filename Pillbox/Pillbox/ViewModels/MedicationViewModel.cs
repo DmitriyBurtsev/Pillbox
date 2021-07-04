@@ -6,30 +6,38 @@ using System.Text;
 
 namespace Pillbox.ViewModels
 {
-    public class MedicationViewModel:BaseViewModel
+    public class MedicationViewModel : BaseViewModel
     {
-        public Medication _medication;
+        public MedicationViewModel(Medication medication)
+        {
+            StartMedicationTime = medication.StartMedicationTime;
+            FinishMedicationTime = medication.FinishMedicationTime;
+            Dosage = medication.Dosage;
+            Number = medication.Number;
+        }
+        private DateTime _startMedication;
         public DateTime StartMedicationTime
         {
-            get => _medication.StartMedicationTime;
-            set => Set(ref _medication.StartMedicationTime, value);
+            get => _startMedication;
+            set => Set(ref _startMedication, value);
         }
+        private DateTime _finishMedication;
         public DateTime FinishMedicationTime
         {
-            get => _medication.FinishMedicationTime;
-            set => Set(ref _medication.FinishMedicationTime, value);
+            get => _finishMedication;
+            set => Set(ref _finishMedication, value);
         }
-
+        private float _dosage;
         public float Dosage
         {
-            get => _medication.Dosage;
-            set => Set(ref _medication.Dosage, value);
-        }   
-        
+            get => _dosage;
+            set => Set(ref _dosage, value);
+        }
+        private int _number;
         public int Number
         {
-            get => _medication.Number;
-            set => Set(ref _medication.Number, value);
+            get => _number;
+            set => Set(ref _number, value);
         }
     }
 }

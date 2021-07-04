@@ -18,7 +18,7 @@
     <TabBar>
         <!--<ShellContent Title="Пилюля" Icon="pills.png" ContentTemplate="{DataTemplate local:MedicineView}" />-->
         <ShellContent Title="Мои лекарства" Icon="box.png" ContentTemplate="{DataTemplate local1:MedPage}" />
-        <ShellContent Title="Добавить лекарство" Icon="pills.png" ContentTemplate="{DataTemplate local2:AdditionView}" />
+        <!--<ShellContent Title="Добавить лекарство" Icon="pills.png" ContentTemplate="{DataTemplate local2:AdditionView}" />-->
 
     </TabBar>
 
