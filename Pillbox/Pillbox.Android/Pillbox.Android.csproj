@@ -67,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlarmHandler.cs" />
     <Compile Include="Services\AndroidNotificationManager.cs" />
+    <Compile Include="Services\BackgroundReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

@@ -5,6 +5,7 @@
              x:DataType="vm:MedPageViewModel"
              x:Class="Pillbox.Views.MainViews.MedPage"
              Title="Мои лекарства" x:Name="medPage">
+    <StackLayout>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -15,34 +16,36 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ScrollView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                    <ListView x:Name="listView" ItemsSource="{Binding Medicines}" SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}" 
-                          HasUnevenRows="True" SeparatorColor="#005400" ItemSelected="OnMedicineSelected" IsVisible="True" IsTabStop="False" IsEnabled="True" IsRefreshing="False">
+                <StackLayout>
+                    <ListView x:Name="listView" ItemsSource="{Binding Medicines, Mode=TwoWay}" SelectedItem="{Binding SelectedMedicine, Mode=TwoWay}" 
+                          HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="OnMedicineSelected" >
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                        <ViewCell>
-                            <Grid IsVisible="True" IsEnabled="True">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto"/>
-                                </Grid.RowDefinitions>
-                                <Label Text="{Binding Source=Medicines, Path=Title}" FontSize="Large"/>
-                                <Label Text="{Binding Source=Medicines, Path=Format}"/>
-                                <Label Text="{Binding Source=Medicines, Path=Method}"/>
-
-
-                            </Grid>                            
-                        </ViewCell>
-                    </DataTemplate>
+                            <DataTemplate x:DataType="vm:MedicineViewModel">
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" FontSize="Large" 
+                                                   TextColor="#005400" FontAttributes="Bold" 
+                                                   Margin="15,20,15,0"/>
+                                            <Label Text="{Binding Format}" FontSize="Small" Margin="15,0,15,0"/>
+                                            <Label Text="{Binding Method}" FontSize="Small" Margin="15,0,15,0"/>
+                                        </StackLayout>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
                         </ListView.ItemTemplate>
 
 
 
 
                     </ListView>
+                </StackLayout>
             </ScrollView>
             <Button Grid.Row="1" Grid.Column="1" Text="+ Добавить" FontSize="Medium" FontAttributes="None" TextColor="White"
                         BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End" 
                 Command="{Binding AddMedicineCommand}" Margin="0,0,30,30"/>
         </Grid>
+    </StackLayout>
 
 
 

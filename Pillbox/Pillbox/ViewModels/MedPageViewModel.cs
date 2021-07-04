@@ -130,6 +130,8 @@ namespace Pillbox.ViewModels
 
 
 
+
+
         //async void UploatAllMedicines()
         //{
         //    MedicineList = await medicineDatabase.GetMedicinesAsync();

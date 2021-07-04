@@ -34,7 +34,6 @@ namespace Pillbox.Views.MainViews
             ViewModelMP = new MedPageViewModel(pageService, medicineDB);
             InitializeComponent();
             notificationManager = DependencyService.Get<INotificationManager>();
-            OnScheduleClick();
         }
         protected override void OnAppearing()
         {
@@ -50,12 +49,7 @@ namespace Pillbox.Views.MainViews
         }
 
 
-        void OnScheduleClick()
-        {
-            string title = $"Хозяин!";
-            string message = $"Пора пить таблетку ххх";
-            notificationManager.SendNotification(title, message, DateTime.Now.AddSeconds(10));
-        }
+        
 
 
 
