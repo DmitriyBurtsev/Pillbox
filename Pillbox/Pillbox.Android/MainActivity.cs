@@ -8,6 +8,7 @@ using Android.Content;
 using Xamarin.Forms;
 using Pillbox.Droid.Services;
 using Pillbox.Services;
+using Matcha.BackgroundService.Droid;
 
 namespace Pillbox.Droid
 {
@@ -16,12 +17,13 @@ namespace Pillbox.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
-            CreateNotificationFromIntent(Intent);
+            CreateNotificationFromIntent(Intent);            
         }
 
         protected override void OnNewIntent(Intent intent)

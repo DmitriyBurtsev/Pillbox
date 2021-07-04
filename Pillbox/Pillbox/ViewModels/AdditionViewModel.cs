@@ -106,7 +106,7 @@ namespace Pillbox.ViewModels
                 await _medicineDatabase.UpdateMedicine(Medicine);
                 MessagingCenter.Send(this, Events.MedicineUpdate, Medicine);
             }
-            await _pageService.PushAsync(new MedPage());
+            await _pageService.PopAsync();
         }
 
     }

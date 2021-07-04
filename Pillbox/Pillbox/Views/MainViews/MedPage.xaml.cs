@@ -32,6 +32,7 @@ namespace Pillbox.Views.MainViews
             var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
             var pageService = new PageService();
             ViewModelMP = new MedPageViewModel(pageService, medicineDB);
+            ViewModelMP.LoadMedicinesCommand.Execute(null);
             InitializeComponent();
             notificationManager = DependencyService.Get<INotificationManager>();
         }

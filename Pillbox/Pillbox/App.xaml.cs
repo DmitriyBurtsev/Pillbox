@@ -5,6 +5,8 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Essentials;
 using Xamarin.Forms.Xaml;
+using Matcha.BackgroundService;
+using Pillbox.Services;
 
 namespace Pillbox
 {
@@ -20,6 +22,8 @@ namespace Pillbox
 
         protected override void OnStart()
         {
+            BackgroundAggregatorService.Add(() => new PeriodicCall(60));
+            BackgroundAggregatorService.StartBackgroundService();
         }
 
         protected override void OnSleep()
