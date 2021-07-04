@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Pillbox.Models;
 using Pillbox.Services;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Pillbox.ViewModels
 {
@@ -24,7 +25,7 @@ namespace Pillbox.ViewModels
 
         private IMedicineDatabase _medicineDB;
         private IPageSevices _pageService;
-        //private INotificationManager _notificationManager; // локальные уведомления
+        private INotificationManager _notificationManager = DependencyService.Get<INotificationManager>(); // локальные уведомления
 
         private MedicineViewModel _selectedMedicine;
         public MedicineViewModel SelectedMedicine
@@ -109,7 +110,44 @@ namespace Pillbox.ViewModels
             }
             catch (Exception)
             { throw; }
+        }
+        public void TaskTime() // уведомления
+        {
+            DateTime timer = new DateTime();
+            foreach (var medicine in Medicines)
+            {
+                try
+                {
+                    if (medicine.NonStop == true)
+                    {
+                        var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
+                        timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
+                        while (timer != DateTime.MaxValue)
+                        {
+                            _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
+                                $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+                            timer = new DateTime(timer.Ticks + timerCount);
+                        }
+                    }
+                    if (medicine.NonStop)
+                    {
+                        var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
+                        timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
+                        DateTime finishTimer = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
+                        while (timer < finishTimer)
+                        {
+                            _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
+                               $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+                            timer = new DateTime(timer.Ticks + timerCount);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("Exception:" + e);
+                }
 
+            }
         }
 
         async Task AddMedicine()

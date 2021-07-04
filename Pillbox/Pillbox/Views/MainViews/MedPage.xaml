@@ -41,6 +41,9 @@
                     </ListView>
                 </StackLayout>
             </ScrollView>
+            <!--<Button Grid.Row="1" Grid.Column="0" Text="- Удалить" FontSize="Medium" FontAttributes="None" TextColor="White"
+                        BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End"
+                    Command="{Binding DeleteMedicineCommand}" Margin="0,0,30,30"/>-->
             <Button Grid.Row="1" Grid.Column="1" Text="+ Добавить" FontSize="Medium" FontAttributes="None" TextColor="White"
                         BackgroundColor="#13bd13" BorderRadius="75" HorizontalOptions="End" VerticalOptions="End" 
                 Command="{Binding AddMedicineCommand}" Margin="0,0,30,30"/>

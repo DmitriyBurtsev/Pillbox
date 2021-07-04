@@ -1,6 +1,7 @@
 ﻿using Pillbox.Database;
 using Pillbox.Models;
 using Pillbox.Services;
+using Pillbox.Views.MainViews;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -105,7 +106,7 @@ namespace Pillbox.ViewModels
                 await _medicineDatabase.UpdateMedicine(Medicine);
                 MessagingCenter.Send(this, Events.MedicineUpdate, Medicine);
             }
-            await _pageService.PopAsync();
+            await _pageService.PushAsync(new MedPage());
         }
 
     }

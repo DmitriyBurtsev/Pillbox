@@ -15,11 +15,13 @@ namespace Pillbox.Views.MainViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AdditionView : ContentPage
     {
+        public readonly IPageSevices _pageservice;
         public AdditionView(MedicineViewModel viewModel)
         {
             InitializeComponent();
 
             var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
+            _pageservice = new PageService();
             var pageService = new PageService();
             Title = (viewModel.Title == null) ? "Добавление лекарства" : $"{Title}";
             BindingContext = new AdditionViewModel(viewModel ?? new MedicineViewModel(), medicineDatabase, pageService);
@@ -92,6 +94,12 @@ namespace Pillbox.Views.MainViews
             daysLbl.IsVisible = false;
             startTime.Time = new TimeSpan(08, 00, 00);
             finishTime.Time = new TimeSpan(20, 00, 00);
+        }
+
+        protected override void OnDisappearing()
+        {
+            
+            base.OnDisappearing();
         }
 
         private void startPicker_DateSelected(object sender, DateChangedEventArgs e)
