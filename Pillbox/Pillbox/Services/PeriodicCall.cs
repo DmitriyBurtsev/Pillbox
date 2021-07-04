@@ -26,7 +26,7 @@ namespace Pillbox.Services
 
         public async Task<bool> StartJob()
         {
-            mpvm.TaskTime();
+            await mpvm.TaskTime();
             return true;
         }
     }

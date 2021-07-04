@@ -111,10 +111,11 @@ namespace Pillbox.ViewModels
             catch (Exception)
             { throw; }
         }
-        public void TaskTime() // уведомления
+        public async Task<bool> TaskTime() // уведомления
         {
+            var meds = await _medicineDB.UpdateMedicineList();
             DateTime timer = new DateTime();
-            foreach (var medicine in Medicines)
+            foreach (var medicine in meds)
             {
                 try
                 {
@@ -146,8 +147,8 @@ namespace Pillbox.ViewModels
                 {
                     Debug.WriteLine("Exception:" + e);
                 }
-
             }
+            return true;
         }
 
         async Task AddMedicine()
