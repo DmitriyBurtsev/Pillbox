@@ -96,6 +96,10 @@ namespace Pillbox.Views.MainViews
             finishTime.Time = new TimeSpan(20, 00, 00);
         }
 
+        protected override bool OnBackButtonPressed()
+        {
+            return base.OnBackButtonPressed();
+        }
         protected override void OnDisappearing()
         {
             

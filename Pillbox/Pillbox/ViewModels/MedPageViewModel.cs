@@ -42,7 +42,7 @@ namespace Pillbox.ViewModels
         
         
 
-        
+        public MedPageViewModel() { }
 
         public MedPageViewModel(IPageSevices pageSevices, IMedicineDatabase medicineDatabase)
         {
@@ -98,7 +98,7 @@ namespace Pillbox.ViewModels
 
         private async Task Load()
         {
-            Medicines.Clear();
+           // Medicines.Clear();
             try
             {
                 if (_isDataLoaded)
@@ -111,45 +111,47 @@ namespace Pillbox.ViewModels
             catch (Exception)
             { throw; }
         }
-        public async Task<bool> TaskTime() // уведомления
-        {
-            var meds = await _medicineDB.UpdateMedicineList();
-            DateTime timer = new DateTime();
-            foreach (var medicine in meds)
-            {
-                try
-                {
-                    if (medicine.NonStop == true)
-                    {
-                        var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
-                        timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
-                        while (timer != DateTime.MaxValue)
-                        {
-                            _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
-                                $"в количестве {medicine.Dosage} {medicine.Format}", timer);
-                            timer = new DateTime(timer.Ticks + timerCount);
-                        }
-                    }
-                    if (medicine.NonStop)
-                    {
-                        var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
-                        timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
-                        DateTime finishTimer = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
-                        while (timer < finishTimer)
-                        {
-                            _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
-                               $"в количестве {medicine.Dosage} {medicine.Format}", timer);
-                            timer = new DateTime(timer.Ticks + timerCount);
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine("Exception:" + e);
-                }
-            }
-            return true;
-        }
+
+
+        //public async Task<bool> TaskTime() // уведомления
+        //{
+        //    //var meds = await _medicineDB.UpdateMedicineList();
+        //    DateTime timer = new DateTime();
+        //    foreach (var medicine in Medicines)
+        //    {
+        //        try
+        //        {
+        //            if (medicine.NonStop == true)
+        //            {
+        //                var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
+        //                timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
+        //                while (timer != DateTime.MaxValue)
+        //                {
+        //                    _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
+        //                        $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+        //                    timer = new DateTime(timer.Ticks + timerCount);
+        //                }
+        //            }
+        //            if (medicine.NonStop)
+        //            {
+        //                var timerCount = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / medicine.Number;
+        //                timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
+        //                DateTime finishTimer = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
+        //                while (timer < finishTimer)
+        //                {
+        //                    _notificationManager.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
+        //                       $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+        //                    timer = new DateTime(timer.Ticks + timerCount);
+        //                }
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Debug.WriteLine("Exception:" + e);
+        //        }
+        //    }
+        //    return true;
+        //}
 
         async Task AddMedicine()
         {

@@ -46,6 +46,7 @@ namespace Pillbox.ViewModels
             };
         }
 
+
         async Task Save()
         {
             if (string.IsNullOrWhiteSpace(Medicine.Title))
