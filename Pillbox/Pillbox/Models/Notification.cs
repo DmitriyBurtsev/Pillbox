@@ -14,6 +14,7 @@ namespace Pillbox.Models
         public string Message { get; set; }
         public bool EveryDay { get; set; }
         public bool NonStop { get; set; }
+        public int InDays { get; set; }
         public ObservableCollection<DateTime> Timers { get; set; }
     }
 }
