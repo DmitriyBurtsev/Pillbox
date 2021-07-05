@@ -65,7 +65,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
-    <Compile Include="Persistance\SQLiteDb.cs" />
+    <Compile Include="Persistance\SQLiteMedicineDb.cs" />
+    <Compile Include="Persistance\SQLiteNotificationDb.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AlarmHandler.cs" />

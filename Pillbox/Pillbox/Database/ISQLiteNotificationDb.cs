@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Pillbox.Database
 {
-    public interface ISQLiteDb
+    public interface ISQLiteNotificationDb
     {
         SQLiteAsyncConnection GetConnection();
+
     }
 }

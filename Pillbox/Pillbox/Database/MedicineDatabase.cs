@@ -13,7 +13,7 @@ namespace Pillbox.Database
     {
         private SQLiteAsyncConnection _connection;
 
-        public MedicineDatabase(ISQLiteDb db)
+        public MedicineDatabase(ISQLiteMedicineDb db)
         {
             _connection = db.GetConnection();
            // _connection.DropTableAsync<Medicine>(); // удаление БД

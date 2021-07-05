@@ -17,10 +17,12 @@ namespace Pillbox.Services
         //IPageSevices ps;
         IMedicineDatabase db;
         INotificationManager nm;
+        INotificationDatabase nb;
         public PeriodicCall(int seconds)
         {
             //ps = new PageService();
-            db = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
+            db = new MedicineDatabase(DependencyService.Get<ISQLiteMedicineDb>());
+            nb = new NotificationDatabase(DependencyService.Get<ISQLiteNotificationDb>());
             mpvm = new MedPageViewModel();
             Interval = TimeSpan.FromSeconds(seconds);
             nm = DependencyService.Get<INotificationManager>();
@@ -61,7 +63,7 @@ namespace Pillbox.Services
                         }
                         if (medicine.NonStop == false)
                         {
-                            DateTime finishTimer = new DateTime(medicine.Finish.Ticks - hours_12.Ticks + medicine.FinishMedicationTime.Ticks);
+                            DateTime finishTimer = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
                             if (timer <= finishTimer && timer >= DateTime.Now)
                             {
                                 nm.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +

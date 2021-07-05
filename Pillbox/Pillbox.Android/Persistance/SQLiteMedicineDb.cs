@@ -1,24 +1,13 @@
-﻿using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using Pillbox.Droid.Persistance;
-using Pillbox.Database;
+﻿using Pillbox.Database;
 using SQLite;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Xamarin.Forms;
 using Environment = Android.OS.Environment;
 
-[assembly: Dependency(typeof(Pillbox.Database.SQLiteDb))]
+[assembly: Dependency(typeof(SQLiteMedicineDb))]
 namespace Pillbox.Droid.Persistance
 {
-    public class SQLiteDb : ISQLiteDb
+    public class SQLiteMedicineDb : ISQLiteMedicineDb
     {
         public SQLiteAsyncConnection GetConnection()
         {

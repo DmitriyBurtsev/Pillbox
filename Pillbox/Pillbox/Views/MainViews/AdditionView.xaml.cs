@@ -20,7 +20,7 @@ namespace Pillbox.Views.MainViews
         {
             InitializeComponent();
 
-            var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
+            var medicineDatabase = new MedicineDatabase(DependencyService.Get<ISQLiteMedicineDb>());
             _pageservice = new PageService();
             var pageService = new PageService();
             Title = (viewModel.Title == null) ? "Добавление лекарства" : $"{Title}";

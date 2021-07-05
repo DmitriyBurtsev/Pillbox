@@ -29,7 +29,7 @@ namespace Pillbox.Views.MainViews
         public MedPage()
         {
             //_connection= new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
-            var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteDb>());
+            var medicineDB = new MedicineDatabase(DependencyService.Get<ISQLiteMedicineDb>());
             var pageService = new PageService();
             ViewModelMP = new MedPageViewModel(pageService, medicineDB);
             //ViewModelMP.LoadMedicinesCommand.Execute(null);
