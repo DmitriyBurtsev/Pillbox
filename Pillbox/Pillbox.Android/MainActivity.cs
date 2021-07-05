@@ -17,7 +17,7 @@ namespace Pillbox.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            BackgroundAggregator.Init(this);
+            //BackgroundAggregator.Init(this);
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

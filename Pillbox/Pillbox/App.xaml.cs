@@ -22,8 +22,8 @@ namespace Pillbox
 
         protected override void OnStart()
         {
-            BackgroundAggregatorService.Add(() => new PeriodicCall(60));
-            BackgroundAggregatorService.StartBackgroundService();
+            //BackgroundAggregatorService.Add(() => new PeriodicCall(60));
+            //BackgroundAggregatorService.StartBackgroundService();
         }
 
         protected override void OnSleep()

@@ -12,6 +12,8 @@ namespace Pillbox.Models
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int Id { get; set; }
         public string Message { get; set; }
+        public bool EveryDay { get; set; }
+        public bool NonStop { get; set; }
         public ObservableCollection<DateTime> Timers { get; set; }
     }
 }

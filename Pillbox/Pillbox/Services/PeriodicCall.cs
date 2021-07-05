@@ -33,53 +33,75 @@ namespace Pillbox.Services
         public async Task<bool> StartJob()
         {            
             var meds = await db.UpdateMedicineList();
+            var nots = await nb.UpdateNotificationList();
             foreach (var medicine in meds)
             {
-                try
+                foreach (var notification in nots)
                 {
-                    //TimeSpan stMed = medicine.StartMedicationTime;
-                    //DateTime _stMed = new DateTime(stMed.Ticks);
-                    DateTime tempTimer;
-                    DateTime timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);                   
-                    int x = medicine.Number;
-                    if (x==1)
+                    if (medicine.Id != notification.Id)
                     {
-                        nm.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
-                               $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+                        await nb.DeleteNotification(notification);
                     }
-                    else if (x > 1)
+                    notification.Id = medicine.Id;
+                    notification.Message = $"Пора принять {medicine.Title} в количестве {medicine.Dosage} {medicine.Format}";
+                    notification.EveryDay = medicine.EveryDay;
+                    notification.NonStop = medicine.NonStop;
+                    DateTime timer = new DateTime(medicine.Start.Ticks + medicine.StartMedicationTime.Ticks);
+                    int number = medicine.Number;
+                    int indays = medicine.InDays;
+                    //if (x==1)
+                    //{      
+                    //    if (y==true)
+                    //    notification.Timers.Add(timer);
+                    //}
+                    if (number > 1)
                     {
-                        x--;
-                        var count = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / x;
-                        if (medicine.NonStop == true)
+                        number--;
+                        var count = (medicine.FinishMedicationTime.Ticks - medicine.StartMedicationTime.Ticks) / number;
+                        if (medicine.NonStop == true && medicine.EveryDay == true)
                         {
-                            if (timer >= DateTime.Now)
+                            while (timer.Ticks <= timer.Ticks + medicine.FinishMedicationTime.Ticks)
                             {
-                                nm.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
-                                    $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+                                notification.Timers.Add(timer);
                                 timer = new DateTime(timer.Ticks + count);
-                                tempTimer = timer;
                             }
                         }
-                        if (medicine.NonStop == false)
+                        if (medicine.NonStop == false && medicine.EveryDay == true)
                         {
-                            DateTime finishTimer = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
-                            if (timer <= finishTimer && timer >= DateTime.Now)
+                            DateTime finisher = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
+                            while (timer <= finisher)
                             {
-                                nm.SendNotification("Напоминаю", $"Пора принять {medicine.Title} " +
-                                   $"в количестве {medicine.Dosage} {medicine.Format}", timer);
+                                notification.Timers.Add(timer);
                                 timer = new DateTime(timer.Ticks + count);
-                                tempTimer = timer;
+                            }
+                        }
+                        if (medicine.NonStop==true && medicine.EveryDay==false)
+                        {
+
+                        }
+                        if (medicine.NonStop==false && medicine.EveryDay==false)
+                        {
+                            DateTime finisher = new DateTime(medicine.Finish.Ticks + medicine.FinishMedicationTime.Ticks);
+                            DateTime tempTimer = timer;
+                            int j=0;
+                            while (timer <= finisher)
+                            {
+                                for (int i = 0; i < indays && timer <= finisher; i++)
+                                {
+                                    while (timer.Ticks <= timer.Ticks + medicine.FinishMedicationTime.Ticks)
+                                    {
+                                        notification.Timers.Add(timer);
+                                        timer = new DateTime(timer.Ticks + count);
+                                    }
+                                    timer = tempTimer.AddDays(j++);
+                                }
+                                j+=indays;
+                                timer = tempTimer.AddDays(j);
                             }
                         }
                     }
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine("Exception:" + e);
                 }
             }
-            // mpvm.TaskTime();
             return true;
         }
     }
