@@ -34,7 +34,7 @@ namespace Pillbox.Services
                 foreach (var timer in notification.Timers)
                 {
                     bool _isSend = false;                   
-                    if (timer >= DateTime.Now)
+                    if (timer >= DateTime.Now && timer <= DateTime.Now.AddMinutes(1))
                     {
                         _notification.SendNotification("Внимание", notification.Message, timer);
                         _isSend = true;
@@ -48,7 +48,7 @@ namespace Pillbox.Services
                             notification.Timers.Remove(timer);
                         }
                     }
-                    if (timer < DateTime.Now)
+                    if (timer < DateTime.Now.AddMinutes(1))
                         notification.Timers.Remove(timer);
                 }
 

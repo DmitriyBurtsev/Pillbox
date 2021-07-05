@@ -14,7 +14,7 @@ namespace Pillbox.Database
         public NotificationDatabase(ISQLiteNotificationDb sQ)
         {
             _connection = sQ.GetConnection();
-            // _connection.DropTableAsync<Notification>(); // удаление БД
+            //_connection.DropTableAsync<Notification>(); // удаление БД
             _connection.CreateTableAsync<Notification>();
         }        
 

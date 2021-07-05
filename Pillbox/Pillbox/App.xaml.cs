@@ -13,16 +13,16 @@ namespace Pillbox
     public partial class App : Application
     {
         
-        
         public App()
         {
             InitializeComponent();            
             MainPage = new AppShell();
+
         }
 
         protected override void OnStart()
         {
-           BackgroundAggregatorService.Add(() => new UpdateNotifications(300));
+           BackgroundAggregatorService.Add(() => new UpdateNotifications(60));
            BackgroundAggregatorService.Add(() => new NotificationSender(60));
            BackgroundAggregatorService.StartBackgroundService();
         }

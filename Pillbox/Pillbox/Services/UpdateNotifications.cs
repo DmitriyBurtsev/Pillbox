@@ -1,6 +1,7 @@
 ﻿using Matcha.BackgroundService;
 using Pillbox.Database;
 using Pillbox.ViewModels;
+using Pillbox.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,7 @@ namespace Pillbox.Services
 {
     public class UpdateNotifications : IPeriodicTask
     {
+        static object locker = new object();
        // MedPageViewModel mpvm;
         //IPageSevices ps;
         IMedicineDatabase db;
